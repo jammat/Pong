@@ -19,7 +19,7 @@ public class Painallukset implements KeyListener {
 		int nappi = e.getKeyCode();
 		
 		if(nappi == KeyEvent.VK_W){
-			Pong.pelaaja.ylÃ¶s=true;
+			Pong.pelaaja.ylös=true;
 		}
 		
 		if(nappi == KeyEvent.VK_S){
@@ -42,7 +42,7 @@ public class Painallukset implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		int nappi = e.getKeyCode();
 		if(nappi == KeyEvent.VK_W){
-			Pong.pelaaja.ylÃ¶s=false;
+			Pong.pelaaja.ylös=false;
 		}
 		
 		if(nappi == KeyEvent.VK_S){
