@@ -21,7 +21,7 @@ public class Pong extends Canvas implements Runnable{
 	public final int KORKEUS = LEVEYS / 16 * 9;
 	public final Dimension ruudunKoko = new Dimension(LEVEYS, KORKEUS);
 	public final String OTSIKKO = "Balamaui - Pong";
-	static boolean k√§ynniss√§ = false;
+	static boolean kaynnissa = false;
 	Image tausta;
 	
 	
@@ -37,6 +37,7 @@ public class Pong extends Canvas implements Runnable{
 		ikkuna.setTitle(OTSIKKO);
 		ikkuna.setBackground(Color.BLACK);
 		ikkuna.setLocationRelativeTo(null);
+		/* Ei voi k‰ytt‰‰ absoluuttista polkua, kuva pit‰isi lis‰t‰ v‰h projektin juureen*/
 		ImageIcon i = new ImageIcon("C:/Users/juhom_000/Downloads/Kentta.png");
 		tausta = i.getImage();
 		avain = new Painallukset(this);
@@ -48,7 +49,7 @@ public class Pong extends Canvas implements Runnable{
 	}
 
 	public void run() {
-		while(k√§ynniss√§ == true){
+		while(kaynnissa){
 			liiku();
 			render();
 			
@@ -63,12 +64,12 @@ public class Pong extends Canvas implements Runnable{
 	
 	
 	 public synchronized void start() {
-		  k√§ynniss√§ = true;
+		  kaynnissa = true;
 		  new Thread(this).start();
 		 } // End start method
 
 		 public static synchronized void stop() {
-		  k√§ynniss√§ = false;
+		  kaynnissa = false;
 		  System.exit(0);
 		 }
 		 
