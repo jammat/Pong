@@ -13,7 +13,7 @@ public class Maila2 {
 	
 	Rectangle rajat;
 	
-	boolean ylös2 = false;
+	boolean ylos2 = false;
 	boolean alas2 = false;
 	
 
@@ -29,7 +29,7 @@ public class Maila2 {
 		 
 		 rajat.setBounds(x, y, leveys, korkeus);
 		 
-		  if(ylös2 && y > 0)
+		  if(ylos2 && y > 0)
 			  y -= vauhti;
 		  if(alas2 && y < peli.getHeight() - korkeus)
 			  y += vauhti;
