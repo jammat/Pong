@@ -1,2 +1,2 @@
 # Pong
-OOPin Pong-peli
+OOPin Pong-peli. Pääluokka on Pong
