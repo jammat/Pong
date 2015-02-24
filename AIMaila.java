@@ -27,9 +27,9 @@ public class AIMaila {
 		 
 		 rajat.setBounds(x, y, leveys, korkeus);
 		 
-		  if(peli.pallo.y <= y && y >= 0 && peli.pallo.x > 465 && peli.pallo.x < 1105)
+		  if(peli.pallo.y <= y && y >= 0 && peli.pallo.x > 465 && peli.pallo.x < 1105 && peli.pallo.vx == +peli.pallo.vauhti)
 			  y -= vauhti;
-		  if(peli.pallo.y > y && y + korkeus <= peli.getHeight() && peli.pallo.x > 465 && peli.pallo.x < 1105)
+		  if(peli.pallo.y > y && y + korkeus <= peli.getHeight() && peli.pallo.x > 465 && peli.pallo.x < 1105 && peli.pallo.vx == +peli.pallo.vauhti)
 			  y += vauhti;
 		  
 		  
