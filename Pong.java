@@ -6,7 +6,6 @@ import java.io.File;
 public class Pong extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
 
-
 	JFrame ikkuna;
 	public static Maila pelaaja;
 	public static Maila pelaaja2;
@@ -22,8 +21,8 @@ public class Pong extends Canvas implements Runnable{
 	Image tausta;
 
 
-	public Pong(int n){
-		ikkuna = new JFrame();
+	public Pong(int n, JFrame ikkuna){
+		this.ikkuna = ikkuna;
 		setPreferredSize(ruudunKoko);
 		ikkuna.add(this, BorderLayout.CENTER);
 		ikkuna.pack();
@@ -92,8 +91,4 @@ public class Pong extends Canvas implements Runnable{
 
 	}
 	
-	public static void main(String[] args){
-		Pong peli = new Pong(0);
-		peli.start();
-	}
 }
