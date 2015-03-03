@@ -4,19 +4,20 @@ import java.awt.Rectangle;
 
 public class Maila {
 
-	int x, y;
-	int leveys = 20;
-	int korkeus = 100;
-	int vauhti = 5;
+	int x, y, leveys, korkeus, vauhti;
 	Rectangle rajat;	
-	boolean ylos = false;
-	boolean alas = false;
+	boolean ylos, alas;
 
 	public Maila(int x, int y) {
 		this.x=x;
 		this.y=y;
 		rajat = new Rectangle(x, y, leveys, korkeus);
 		rajat.setBounds(x, y, leveys, korkeus);
+		leveys = 20;
+		korkeus = 100;
+		vauhti = 5;
+		ylos = false;
+		alas = false;
 	}
 
 
