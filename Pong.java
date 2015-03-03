@@ -16,7 +16,6 @@ public class Pong extends Canvas implements Runnable{
 	public final int LEVEYS = 1280;
 	public final int KORKEUS = LEVEYS / 16 * 9;
 	public final Dimension ruudunKoko = new Dimension(LEVEYS, KORKEUS);
-	public final String OTSIKKO = "Balamaui - Pong";
 	static boolean kaynnissa = false;
 	Image tausta;
 
@@ -29,7 +28,7 @@ public class Pong extends Canvas implements Runnable{
 		ikkuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ikkuna.setVisible(true);
 		ikkuna.setResizable(false);
-		ikkuna.setTitle(OTSIKKO);
+		ikkuna.setTitle("Balamaui - Pong");
 		ikkuna.setBackground(Color.BLACK);
 		ikkuna.setLocationRelativeTo(null);
 		String basePath = new File("").getAbsolutePath();

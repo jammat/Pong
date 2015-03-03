@@ -30,10 +30,10 @@ public class Painallukset implements KeyListener {
 			if(nappi == KeyEvent.VK_DOWN){
 				Pong.pelaaja2.alas=true;
 			}
-			 
-			if(nappi == KeyEvent.VK_ESCAPE){
-				System.exit(0);
-			}
+		}
+		
+		if(nappi == KeyEvent.VK_ESCAPE){
+			System.exit(0);
 		}
 	}
 
