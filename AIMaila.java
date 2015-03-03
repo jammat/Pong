@@ -1,5 +1,3 @@
-package com.balamaui.pong;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -27,9 +25,9 @@ public class AIMaila {
 		 
 		 rajat.setBounds(x, y, leveys, korkeus);
 		 
-		  if(Pong.pallo.y <= y && y >= 0 && Pong.pallo.x > 465 && Pong.pallo.x < 1105 && Pong.pallo.vx == +Pong.pallo.vauhti)
+		  if(Pong.pallo.y <= y && y >= 0 && Pong.pallo.x > 465 && Pong.pallo.x < 1105 && Pong.pallo.vx == Pong.pallo.vauhti)
 			  y -= vauhti;
-		  if(Pong.pallo.y > y && y + korkeus <= peli.getHeight() && Pong.pallo.x > 465 && Pong.pallo.x < 1105 && Pong.pallo.vx == +peli.pallo.vauhti)
+		  if(Pong.pallo.y > y && y + korkeus <= peli.getHeight() && Pong.pallo.x > 465 && Pong.pallo.x < 1105 && Pong.pallo.vx == Pong.pallo.vauhti)
 			  y += vauhti;
 		  
 		  
