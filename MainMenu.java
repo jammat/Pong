@@ -52,6 +52,7 @@ public class MainMenu {
 		ikkuna.pack();
 		ikkuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ikkuna.setVisible(true);
+		ikkuna.setLocationRelativeTo(null);
 
 	}
 
