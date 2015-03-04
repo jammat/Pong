@@ -23,6 +23,7 @@ public class MainMenu {
 		JButton b2 = new JButton("Moninpeli");
 		JButton b3 = new JButton("Lataa peli");
 		JButton b4 = new JButton("Huipputulokset");
+		JButton b5 = new JButton("Lopeta peli");
 
 		b1.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -38,11 +39,17 @@ public class MainMenu {
 				peli.start();
 			}
 		});
+		b5.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		
 		P1.add(b1);
 		P1.add(b2);
 		P1.add(b3);
 		P1.add(b4);
+		P1.add(b5);
 		ikkuna.add(P1);
 
 		ikkuna.setPreferredSize(ruudunKoko);
