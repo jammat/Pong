@@ -15,8 +15,9 @@ public class MainMenu {
 
 	public MainMenu(JFrame akkuna) {
 		this.ikkuna = akkuna;
-		
-		//p1.setLayout(new BoxLayout(ikkuna, 1280));
+	}
+	
+	public void startMenu() {
 		P1.setPreferredSize(new Dimension(400, 40));
 		P1.setBackground(Color.RED);
 		JButton b1 = new JButton("Yksinpeli");
@@ -59,12 +60,12 @@ public class MainMenu {
 		ikkuna.pack();
 		ikkuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ikkuna.setVisible(true);
-		ikkuna.setLocationRelativeTo(null);
-
+		ikkuna.setLocationRelativeTo(null);		
 	}
 
 	public static void main(String[] args) {
 		JFrame ikkuna = new JFrame();
 		MainMenu spela = new MainMenu(ikkuna);
+		spela.startMenu();
 	}
 }

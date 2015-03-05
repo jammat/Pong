@@ -2,9 +2,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Painallukset implements KeyListener {
+	private Pong peli;
 
 	public Painallukset(Pong peli) {
 		peli.addKeyListener(this);
+		this.peli = peli;
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -13,6 +15,14 @@ public class Painallukset implements KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 		int nappi = e.getKeyCode();
+		
+		if(nappi == KeyEvent.VK_P){
+			if (Pong.kaynnissa) {
+				Pong.stop();
+			} else {
+				peli.start();
+			}
+		}
 
 		if(nappi == KeyEvent.VK_W){
 			Pong.pelaaja.ylos=true;

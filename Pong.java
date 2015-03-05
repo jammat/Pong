@@ -7,30 +7,17 @@ public class Pong extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
 
 	JFrame ikkuna;
+	Image tausta;
+	static boolean kaynnissa = false;
 	public static Maila pelaaja;
 	public static Maila pelaaja2;
 	public static Painallukset avain;
 	public static Pallo pallo;
 
-
-	public final int LEVEYS = 1280;
-	public final int KORKEUS = LEVEYS / 16 * 9;
-	public final Dimension ruudunKoko = new Dimension(LEVEYS, KORKEUS);
-	static boolean kaynnissa = false;
-	Image tausta;
-
-
 	public Pong(int n, JFrame ikkuna){
 		this.ikkuna = ikkuna;
-		setPreferredSize(ruudunKoko);
 		ikkuna.add(this, BorderLayout.CENTER);
 		ikkuna.pack();
-		ikkuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ikkuna.setVisible(true);
-		ikkuna.setResizable(false);
-		ikkuna.setTitle("Balamaui - Pong");
-		ikkuna.setBackground(Color.BLACK);
-		ikkuna.setLocationRelativeTo(null);
 		String basePath = new File("").getAbsolutePath();
 		ImageIcon i = new ImageIcon(basePath + "/bin/kentta.jpg");
 		tausta = i.getImage();
@@ -56,16 +43,16 @@ public class Pong extends Canvas implements Runnable{
 		}
 	}
 
-
-
 	public synchronized void start() {
 		kaynnissa = true;
+		/* ehka muutettava, jos aloittaa aina uuden threadin kun peli
+		 * kaynnistetaan pause tilasta uudelleen
+		 */
 		new Thread(this).start();
-	} // End start method
+	}
 
 	public static synchronized void stop() {
 		kaynnissa = false;
-		System.exit(0);
 	}
 
 	public void liiku(){
