@@ -41,16 +41,16 @@ public class MenuState extends GameState {
 			int stringHeight = (int) g.getFontMetrics().getStringBounds(menu[i], g).getHeight();
 			g.drawString(menu[i], (Panel.WIDTH - stringLength) / 2, menuStartPos + (160 - (buttonHeight - stringHeight))* (i));
 		}
-		/*
-		g.drawString("Yksinpeli", (Panel.WIDTH - buttonWidth) / 2 + 40, 227);
-		g.drawString("Moninpeli", (Panel.WIDTH - buttonWidth) / 2 + 34, 350);
-		g.drawString("Lopeta", (Panel.WIDTH - buttonWidth) / 2 + 66, 468);*/
 	}
+	
 	public void keyPressed(int k) {}
 	public void keyReleased(int k) {}
 
 	public void mousePressed(MouseEvent k) {
 		if (yksinP.contains(Panel.mouseX, Panel.mouseY)) {
+			gsm.setState(2);
+		}
+		if (kaksinP.contains(Panel.mouseX, Panel.mouseY)) {
 			gsm.setState(1);
 		}
 		if (lopeta.contains(Panel.mouseX, Panel.mouseY)) {

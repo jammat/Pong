@@ -11,12 +11,12 @@ import javax.swing.ImageIcon;
 
 public class GameOn extends GameState{
 	
-	Image image;
+	protected Image image;
 	// mailojen tiedot
-	int width, height, x, y;
-	static Maila maila1, maila2;
-	static Pallo pallo;
-
+	protected int width, height, x, y;
+	protected Maila maila1, maila2;
+	public Pallo pallo;
+	
 	public GameOn(GameStateManager gsm) {
 		this.gsm = gsm;
 		String basePath = new File("").getAbsolutePath();
@@ -40,11 +40,11 @@ public class GameOn extends GameState{
 	public void draw(Graphics2D g) {
 		g.drawImage(image, 0, 0, Panel.WIDTH, Panel.HEIGHT, null);
 		maila1.render(g);
-		maila1.liiku();
+		maila1.liiku(this);
 		maila2.render(g);
-		maila2.liiku();
+		maila2.liiku(this);
 		pallo.render(g);
-		pallo.liiku();
+		pallo.liiku(this);
 		g.setColor(Color.WHITE);
 	}
 	
@@ -63,14 +63,12 @@ public class GameOn extends GameState{
 			maila1.alas=true;
 		}
 		
-		if (!(maila2 instanceof AIMaila)) {
-			if(nappi == KeyEvent.VK_UP){
-				maila2.ylos=true;
-			}
-	
-			if(nappi == KeyEvent.VK_DOWN){
-				maila2.alas=true;
-			}
+		if(nappi == KeyEvent.VK_UP){
+			maila2.ylos=true;
+		}
+
+		if(nappi == KeyEvent.VK_DOWN){
+			maila2.alas=true;
 		}
 	}
 
@@ -85,14 +83,12 @@ public class GameOn extends GameState{
 			maila1.alas=false;
 		}
 
-		if (!(maila2 instanceof AIMaila)) {
-			if(nappi == KeyEvent.VK_UP){
-				maila2.ylos=false;
-			}
-	
-			if(nappi == KeyEvent.VK_DOWN){
-				maila2.alas=false;
-			}
+		if(nappi == KeyEvent.VK_UP){
+			maila2.ylos=false;
+		}
+
+		if(nappi == KeyEvent.VK_DOWN){
+			maila2.alas=false;
 		}
 	}
 

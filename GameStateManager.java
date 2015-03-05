@@ -16,6 +16,7 @@ public class GameStateManager {
 		states = new ArrayList<GameState>();
 		states.add(new MenuState(this));
 		states.add(new GameOn(this));
+		states.add(new GameAI(this));
 		states.get(currentState).update();
 	}
 	

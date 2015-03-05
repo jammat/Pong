@@ -6,9 +6,9 @@ import java.awt.Rectangle;
 
 public class Maila {
 
-	int x, y, leveys, korkeus, vauhti;
-	Rectangle rajat;	
-	boolean ylos, alas;
+	protected int x, y, leveys, korkeus, vauhti;
+	protected Rectangle rajat;	
+	protected boolean ylos, alas;
 
 	public Maila(int x, int y, int leveys, int korkeus) {
 		this.x=x;
@@ -23,7 +23,7 @@ public class Maila {
 	}
 
 
-	public void liiku() {
+	public void liiku(GameOn g) {
 		rajat.setBounds(x, y, leveys, korkeus);
 		if(ylos && y > 0)
 			y -= vauhti;
@@ -37,20 +37,4 @@ public class Maila {
 	}
 
 
-}
-
-class AIMaila extends Maila {
-	public AIMaila(int x, int y, int leveys, int korkeus) {
-		super(x, y, leveys, korkeus);
-		vauhti = 5;
-	}
-
-	@Override
-	public void liiku() {
-		rajat.setBounds(x, y, leveys, korkeus);
-		if(GameOn.pallo.y <= y && y >= 0 && GameOn.pallo.x > 465 && GameOn.pallo.x < 1105 && GameOn.pallo.vx == GameOn.pallo.vauhti)
-			y -= vauhti;
-		if(GameOn.pallo.y > y && y + korkeus <= Panel.HEIGHT && GameOn.pallo.x > 465 && GameOn.pallo.x < 1105 && GameOn.pallo.vx == GameOn.pallo.vauhti)
-			y += vauhti;
-	}	
 }

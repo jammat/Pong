@@ -20,7 +20,7 @@ public class Pallo {
 		rajat.setBounds(this.x, this.y, this.koko, this.koko);
 	}
 
-	public void liiku() {
+	public void liiku(GameOn g) {
 		rajat.setBounds(x, y, koko, koko);
 
 		if (x <= 0) {
@@ -38,13 +38,13 @@ public class Pallo {
 		x += vx;
 		y += vy;
 
-		mailaosuma();
+		mailaosuma(g);
 	}
 
-	private void mailaosuma(){
-		if (rajat.intersects(GameOn.maila1.rajat)) {
+	private void mailaosuma(GameOn g){
+		if (rajat.intersects(g.maila1.rajat)) {
 			vx = vauhti;
-		} else if (rajat.intersects(GameOn.maila2.rajat)) {
+		} else if (rajat.intersects(g.maila2.rajat)) {
 			vx = -vauhti;
 		}
 	}
