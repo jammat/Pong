@@ -1,8 +1,0 @@
--Main Menu
--Pause Menu
--Vaihtoehdot P2/AI
--Save Game
--Load Game
--Pisteytyssysteemi
--Huipputulokset
--Musiikki(?)
