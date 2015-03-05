@@ -19,7 +19,7 @@ public class MainMenu {
 		this.ikkuna = akkuna;
 		ikkuna.setPreferredSize(ruudunKoko);
 		ikkuna.setResizable(false);
-		ikkuna.setTitle("Balamaui - Pong");
+		ikkuna.setTitle("Bala Maui - Pong");
 		ikkuna.setBackground(Color.BLACK);
 		ikkuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ikkuna.pack();
@@ -28,15 +28,16 @@ public class MainMenu {
 	}
 	
 	public void buildMenu() {
-		MainMenu menu = this;
+		final MainMenu menu = this;
 		P1.setPreferredSize(new Dimension(400, 40));
 		P1.setBackground(Color.RED);
 		JButton b1 = new JButton("Yksinpeli");
 		JButton b2 = new JButton("Moninpeli");
 		JButton b3 = new JButton("Lataa peli");
 		JButton b4 = new JButton("Huipputulokset");
-		JButton b5 = new JButton("Lopeta peli");
-
+		JButton b5 = new JButton("Ohjeet");
+		JButton b6 = new JButton("Lopeta peli");
+		
 		b1.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menu.hideMenu();
@@ -53,6 +54,13 @@ public class MainMenu {
 		});
 		b5.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Yksinpelissä vasemman puolen mailaa ohjataan W- ja S-näppäimillä.\n"
+						+ "Moninpelissä vasenta mailaa ohjataan kuten yksinpelissä, oikeaa mailaa nuolinäppäimillä.\n\n"
+						+ "Pelin saa tauotettua P-näppäimestä.", "Bala Maui - Pong - Ohjeet", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		b6.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
@@ -61,7 +69,8 @@ public class MainMenu {
 		P1.add(b2);
 		P1.add(b3);
 		P1.add(b4);
-		P1.add(b5);	
+		P1.add(b5);
+		P1.add(b6);
 		
 		this.MENU = true;
 	}
