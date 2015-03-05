@@ -54,9 +54,9 @@ public class MainMenu {
 		});
 		b5.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Yksinpelissä vasemman puolen mailaa ohjataan W- ja S-näppäimillä.\n"
-						+ "Moninpelissä vasenta mailaa ohjataan kuten yksinpelissä, oikeaa mailaa nuolinäppäimillä.\n\n"
-						+ "Pelin saa tauotettua P-näppäimestä.", "Bala Maui - Pong - Ohjeet", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Yksinpelissa vasemman puolen mailaa ohjataan W- ja S-nappaimilla.\n"
+						+ "Moninpelissa vasenta mailaa ohjataan kuten yksinpelissa, oikeaa mailaa nuolinappaimilla.\n\n"
+						+ "Pelin saa tauotettua P-nappaimesta.", "Bala Maui - Pong - Ohjeet", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		b6.addActionListener( new ActionListener() {
