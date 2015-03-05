@@ -1,5 +1,3 @@
-
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -7,9 +5,8 @@ public class Painallukset implements KeyListener {
 
 	public Painallukset(Pong peli) {
 		peli.addKeyListener(this);
+		peli.setFocusable(true);
 	}
-
-
 
 	public void keyTyped(KeyEvent e) {
 
@@ -17,6 +14,12 @@ public class Painallukset implements KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 		int nappi = e.getKeyCode();
+		
+		if(nappi == KeyEvent.VK_P){
+			if (Pong.kaynnissa) {
+				Main.setState(new MainMenu());
+			}
+		}
 
 		if(nappi == KeyEvent.VK_W){
 			Pong.pelaaja.ylos=true;
@@ -25,22 +28,21 @@ public class Painallukset implements KeyListener {
 		if(nappi == KeyEvent.VK_S){
 			Pong.pelaaja.alas=true;
 		}
-
-		//if(nappi == KeyEvent.VK_UP){
-		//	Pong.pelaaja2.ylös2=true;
-		//}
-
-		//if(nappi == KeyEvent.VK_DOWN){
-		//	Pong.pelaaja2.alas2=true;
-		//}
-
-		if(nappi == KeyEvent.VK_ESCAPE){
-			System.exit(0);
+		
+		if (!(Pong.pelaaja2 instanceof AIMaila)) {
+			if(nappi == KeyEvent.VK_UP){
+				Pong.pelaaja2.ylos=true;
+			}
+	
+			if(nappi == KeyEvent.VK_DOWN){
+				Pong.pelaaja2.alas=true;
+			}
 		}
 	}
 
 	public void keyReleased(KeyEvent e) {
 		int nappi = e.getKeyCode();
+		
 		if(nappi == KeyEvent.VK_W){
 			Pong.pelaaja.ylos=false;
 		}
@@ -49,13 +51,16 @@ public class Painallukset implements KeyListener {
 			Pong.pelaaja.alas=false;
 		}
 
-		//if(nappi == KeyEvent.VK_UP){
-		//Pong.pelaaja2.ylös2=false;
-		//}
+		if (!(Pong.pelaaja2 instanceof AIMaila)) {
+			if(nappi == KeyEvent.VK_UP){
+				Pong.pelaaja2.ylos=false;
+			}
+	
+			if(nappi == KeyEvent.VK_DOWN){
+				Pong.pelaaja2.alas=false;
+			}
+		}
 
-		//if(nappi == KeyEvent.VK_DOWN){
-		//Pong.pelaaja2.alas2=false;
-		//}
 	}
 
 }

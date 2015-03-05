@@ -1,107 +1,77 @@
-
-
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.*;
 
-public class Pong extends Canvas implements Runnable{
-	private static final long serialVersionUID = 1L;
+import java.io.File;
 
+interface GameState{	
+    public void render();
+}
 
-	JFrame ikkuna;
-	public static Maila pelaaja;
-	//public static Maila2 pelaaja2;
-	public static Painallukset avain;
-	public static AIMaila AIPelaaja;
-	public static Pallo pallo;
+public class Pong extends JPanel implements GameState {
+	static final long serialVersionUID = 1L;
 
-
-	public final int LEVEYS = 1280;
-	public final int KORKEUS = LEVEYS / 16 * 9;
-	public final Dimension ruudunKoko = new Dimension(LEVEYS, KORKEUS);
-	public final String OTSIKKO = "Balamaui - Pong";
-	static boolean kaynnissa = false;
 	Image tausta;
+	public MainMenu menu;
+	static boolean kaynnissa = false;
+	public static Maila pelaaja;
+	public static Maila pelaaja2;
+	public static Pallo pallo;
+	public static Painallukset avain;
 
-
-	public Pong(){
-		ikkuna = new JFrame();
-		setPreferredSize(ruudunKoko);
-		ikkuna.add(this, BorderLayout.CENTER);
-		ikkuna.pack();
-
-		ikkuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ikkuna.setVisible(true);
-		ikkuna.setResizable(false);
-		ikkuna.setTitle(OTSIKKO);
-		ikkuna.setBackground(Color.BLACK);
-		ikkuna.setLocationRelativeTo(null);
-		/* Ei voi k‰ytt‰‰ absoluuttista polkua, kuva pit‰isi lis‰t‰ v‰h projektin juureen*/
-		ImageIcon i = new ImageIcon("B:/Kuvat/avatarcolor.jpg");
+	public Pong(int n){
+		Main.IKKUNA.add(this, BorderLayout.CENTER);
+		Main.IKKUNA.pack();
+		String basePath = new File("").getAbsolutePath();
+		ImageIcon i = new ImageIcon(basePath + "/bin/kentta.jpg");
 		tausta = i.getImage();
 		avain = new Painallukset(this);
 		pelaaja = new Maila(165, 265);
-		//pelaaja2 = new Maila2(1105, 265);
-		AIPelaaja = new AIMaila(1105, 265);
-		pallo = new Pallo(getWidth() / 2, getHeight() / 2);
-
-	}
-
-	public void run() {
-		while(kaynnissa){
-			liiku();
-			render();
-
-			try {
-				Thread.sleep(7);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		if ( n == 0) {
+			pelaaja2 = new Maila(1105, 265);
+		} else if (n == 1) {
+			pelaaja2 = new AIMaila(1105, 265);
 		}
+		pallo = new Pallo(Main.IKKUNA.getWidth() / 2, Main.IKKUNA.getHeight() / 2);
+	    Action a = new AbstractAction() {
+	        private static final long serialVersionUID = 1L;
+	        @Override public void actionPerformed(ActionEvent e) {
+
+	        }
+	    };
+		this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("P"),
+				Main.setState(new MainMenu()));
 	}
-
-
-
+	
 	public synchronized void start() {
 		kaynnissa = true;
-		new Thread(this).start();
-	} // End start method
+	}
 
 	public static synchronized void stop() {
 		kaynnissa = false;
-		System.exit(0);
 	}
 
 	public void liiku(){
 		pelaaja.liiku(this);
-		//pelaaja2.liiku(this);
-		AIPelaaja.liiku(this);
+		pelaaja2.liiku(this);
 		pallo.liiku(this);
-
-
 	}
-
-
+	
 	public void render() {
-		BufferStrategy bs = getBufferStrategy();
+		liiku();
+        BufferStrategy bs = Main.IKKUNA.getBufferStrategy();
 		if (bs == null) {
-			createBufferStrategy(3);
+			Main.IKKUNA.createBufferStrategy(3);
 			return;
 		}
-
-		Graphics g = bs.getDrawGraphics();	
-		g.drawImage(tausta, 0, 0, getWidth(), getHeight(), null);	
+		Graphics2D g = (Graphics2D) bs.getDrawGraphics();	
+		g.drawImage(tausta, 0, 0, Main.IKKUNA.getWidth(), Main.IKKUNA.getHeight(), null);	
 		pelaaja.render(g);
-		//pelaaja2.render(g);
-		AIPelaaja.render(g);
+		pelaaja2.render(g);
 		pallo.render(g);
 		g.dispose();
 		bs.show();
-
 	}
-	public static void main(String[] args){
-		Pong peli = new Pong();
-		peli.start();
-	}
+	
 }
