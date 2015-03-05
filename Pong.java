@@ -8,14 +8,16 @@ public class Pong extends Canvas implements Runnable{
 
 	JFrame ikkuna;
 	Image tausta;
+	public MainMenu menu;
 	static boolean kaynnissa = false;
 	public static Maila pelaaja;
 	public static Maila pelaaja2;
 	public static Painallukset avain;
 	public static Pallo pallo;
 
-	public Pong(int n, JFrame ikkuna){
-		this.ikkuna = ikkuna;
+	public Pong(int n, MainMenu menu){
+		this.menu = menu;
+		this.ikkuna = menu.ikkuna;
 		ikkuna.add(this, BorderLayout.CENTER);
 		ikkuna.pack();
 		String basePath = new File("").getAbsolutePath();
@@ -74,7 +76,6 @@ public class Pong extends Canvas implements Runnable{
 		pallo.render(g);
 		g.dispose();
 		bs.show();
-
 	}
 	
 }

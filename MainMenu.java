@@ -5,8 +5,10 @@ import javax.swing.*;
 
 public class MainMenu {
 
-	private JFrame ikkuna;
+	public JFrame ikkuna;
 	private static final JPanel P1 = new JPanel();
+	public boolean MENU = false;
+	public boolean menuState = true;
 
 	public final int LEVEYS = 1280;
 	public final int KORKEUS = LEVEYS / 16 * 9;
@@ -15,9 +17,18 @@ public class MainMenu {
 
 	public MainMenu(JFrame akkuna) {
 		this.ikkuna = akkuna;
+		ikkuna.setPreferredSize(ruudunKoko);
+		ikkuna.setResizable(false);
+		ikkuna.setTitle("Balamaui - Pong");
+		ikkuna.setBackground(Color.BLACK);
+		ikkuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ikkuna.pack();
+		ikkuna.setLocationRelativeTo(null);	
+		ikkuna.setVisible(true);
 	}
 	
-	public void startMenu() {
+	public void buildMenu() {
+		MainMenu menu = this;
 		P1.setPreferredSize(new Dimension(400, 40));
 		P1.setBackground(Color.RED);
 		JButton b1 = new JButton("Yksinpeli");
@@ -28,15 +39,15 @@ public class MainMenu {
 
 		b1.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ikkuna.remove(P1);
-				Pong peli = new Pong(1, ikkuna);
+				menu.hideMenu();
+				Pong peli = new Pong(1, menu);
 				peli.start();
 			}
 		});
 		b2.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ikkuna.remove(P1);
-				Pong peli = new Pong(0, ikkuna);
+				menu.hideMenu();
+				Pong peli = new Pong(0, menu);
 				peli.start();
 			}
 		});
@@ -50,22 +61,31 @@ public class MainMenu {
 		P1.add(b2);
 		P1.add(b3);
 		P1.add(b4);
-		P1.add(b5);
-		ikkuna.add(P1);
-
-		ikkuna.setPreferredSize(ruudunKoko);
-		ikkuna.setResizable(false);
-		ikkuna.setTitle("Balamaui - Pong");
-		ikkuna.setBackground(Color.BLACK);
-		ikkuna.pack();
-		ikkuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ikkuna.setVisible(true);
-		ikkuna.setLocationRelativeTo(null);		
+		P1.add(b5);	
+		
+		this.MENU = true;
+	}
+	
+	public void startMenu() {
+		if (!(this.MENU)) {
+			this.buildMenu();
+		}
+	}
+	
+	public void showMenu() {
+		this.ikkuna.add(P1);	
+		this.ikkuna.pack();
+	}
+	
+	public void hideMenu() {
+		this.ikkuna.remove(P1);	
+		this.ikkuna.pack();
 	}
 
 	public static void main(String[] args) {
 		JFrame ikkuna = new JFrame();
 		MainMenu spela = new MainMenu(ikkuna);
 		spela.startMenu();
+		spela.showMenu();
 	}
 }

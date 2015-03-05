@@ -19,8 +19,10 @@ public class Painallukset implements KeyListener {
 		if(nappi == KeyEvent.VK_P){
 			if (Pong.kaynnissa) {
 				Pong.stop();
+				peli.menu.showMenu();
 			} else {
 				peli.start();
+				peli.menu.hideMenu();
 			}
 		}
 
