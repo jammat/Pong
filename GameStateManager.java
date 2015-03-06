@@ -17,6 +17,7 @@ public class GameStateManager {
 		states.add(new MenuState(this));
 		states.add(new GameOn(this));
 		states.add(new GameAI(this));
+		states.add(new OhjeetState(this));
 		states.get(currentState).update();
 	}
 	

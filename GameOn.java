@@ -1,6 +1,7 @@
 package Pong2;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
@@ -32,19 +33,25 @@ public class GameOn extends GameState{
 	}
 	
 	public void init() {
+		Panel.cursorState = Cursor.DEFAULT_CURSOR;
 	}
 
 	public void update() {	
+		maila1.liiku(this);
+		maila2.liiku(this);
+		pallo.liiku(this);
 	}
 
 	public void draw(Graphics2D g) {
+		// tausta
 		g.drawImage(image, 0, 0, Panel.WIDTH, Panel.HEIGHT, null);
+		// Pause teksti
+		int stringLength = (int) g.getFontMetrics().getStringBounds("Pause", g).getWidth();
+		int stringHeight = (int) g.getFontMetrics().getStringBounds("Pause", g).getHeight();
+		g.drawString("Pause", Panel.WIDTH - 40 - stringLength, Panel.HEIGHT - stringHeight);
 		maila1.render(g);
-		maila1.liiku(this);
 		maila2.render(g);
-		maila2.liiku(this);
 		pallo.render(g);
-		pallo.liiku(this);
 		g.setColor(Color.WHITE);
 	}
 	

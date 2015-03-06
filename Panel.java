@@ -127,7 +127,11 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 	public void mouseMoved(MouseEvent e) {	
 		mouseX = e.getX();
 		mouseY = e.getY();
-		gsm.mouseMoved(e);
+		try {
+			gsm.mouseMoved(e);
+		} catch (NullPointerException ex) {
+			// .... :(
+		}
 	}
 
 	

@@ -8,22 +8,24 @@ import java.awt.event.MouseEvent;
 
 public class MenuState extends GameState {
 	
-	String[] menu = {"Yksinpeli", "Kaksinpeli", "Lopeta"};
+	String[] menu = {"Yksinpeli", "Kaksinpeli", "Huipputulokset", "Ohjeet", "Lopeta"};
 	private int buttonWidth;
 	private int buttonHeight;
 	private int fontSize;
 	private Font menuFont;
-	private Rectangle yksinP, kaksinP, lopeta;
+	private Rectangle yksinP, kaksinP, huippuT, ohjeet, lopeta;
 	
 	public MenuState(GameStateManager gsm) {
 		this.gsm = gsm;
-		buttonWidth = 300;
+		buttonWidth = 400;
 		buttonHeight = 100;
-		fontSize = 50;
+		fontSize = 40;
 		menuFont = new Font("Arial", Font.BOLD, fontSize);
-		yksinP = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 160, buttonWidth, buttonHeight);
-		kaksinP = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 280, buttonWidth, buttonHeight);
-		lopeta = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 400, buttonWidth, buttonHeight);
+		yksinP = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 60, buttonWidth, buttonHeight);
+		kaksinP = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 180, buttonWidth, buttonHeight);
+		huippuT = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 300, buttonWidth, buttonHeight);
+		ohjeet = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 420, buttonWidth, buttonHeight);
+		lopeta = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 540, buttonWidth, buttonHeight);
 	}
 	
 	public void init() {}
@@ -33,13 +35,15 @@ public class MenuState extends GameState {
 	public void draw(Graphics2D g) {
 		g.draw(yksinP);
 		g.draw(kaksinP);
+		g.draw(huippuT);
+		g.draw(ohjeet);
 		g.draw(lopeta);
 		g.setFont(menuFont);
-		int menuStartPos = 230;
+		int menuStartPos = 124;
 		for (int i = 0; i < menu.length; i++) {
 			int stringLength = (int) g.getFontMetrics().getStringBounds(menu[i], g).getWidth();
 			int stringHeight = (int) g.getFontMetrics().getStringBounds(menu[i], g).getHeight();
-			g.drawString(menu[i], (Panel.WIDTH - stringLength) / 2, menuStartPos + (160 - (buttonHeight - stringHeight))* (i));
+			g.drawString(menu[i], (Panel.WIDTH - stringLength) / 2, menuStartPos + (174 - (buttonHeight - stringHeight))* (i));
 		}
 	}
 	
@@ -53,6 +57,12 @@ public class MenuState extends GameState {
 		if (kaksinP.contains(Panel.mouseX, Panel.mouseY)) {
 			gsm.setState(1);
 		}
+		if (huippuT.contains(Panel.mouseX, Panel.mouseY)) {
+			// huipputulokset -tila
+		}
+		if (ohjeet.contains(Panel.mouseX, Panel.mouseY)) {
+			gsm.setState(3);
+		}
 		if (lopeta.contains(Panel.mouseX, Panel.mouseY)) {
 			System.exit(0);
 		}
@@ -63,7 +73,7 @@ public class MenuState extends GameState {
 	}
 	
 	public void mouseMoved(MouseEvent e) {
-		if (yksinP.contains(Panel.mouseX, Panel.mouseY) || kaksinP.contains(Panel.mouseX, Panel.mouseY) || lopeta.contains(Panel.mouseX, Panel.mouseY)) {
+		if (yksinP.contains(Panel.mouseX, Panel.mouseY) || kaksinP.contains(Panel.mouseX, Panel.mouseY) || lopeta.contains(Panel.mouseX, Panel.mouseY) || ohjeet.contains(Panel.mouseX, Panel.mouseY)) {
 			Panel.cursorState = Cursor.HAND_CURSOR;
 		} else {
 			Panel.cursorState = Cursor.DEFAULT_CURSOR;
