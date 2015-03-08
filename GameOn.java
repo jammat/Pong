@@ -33,7 +33,7 @@ public class GameOn extends GameState{
 		y = (Panel.HEIGHT - height) / 2;
 		maila1 = new Maila(x, y, width, height);
 		maila2 = new Maila(Panel.WIDTH - x, y, width, height);
-		pallo = new Pallo(Panel.HEIGHT / 2, Panel.WIDTH / 2);
+		pallo = new Pallo((Panel.WIDTH / 2) - 14, Panel.HEIGHT / 2);
 	}
 	
 	public void init() {
@@ -45,12 +45,24 @@ public class GameOn extends GameState{
 		maila2.liiku(this);
 		pallo.liiku(this);
 		Pallo p = this.pallo;
-		if (p.getX() == 0) {
+		// syysta x pienin y-koordinaatti on -4 ja 0 ei toimi
+		if (p.getX() == -4) {
 			this.maila1.lisaaPiste();
+			this.resetGame();
 		}
-		if (p.getX() == (Panel.WIDTH - p.getKoko())){
+		// isoin koordinaatti on 1268 joten +2, en tieda miksi
+		if (p.getX() == (Panel.WIDTH - p.getKoko() + 2)){
 			this.maila2.lisaaPiste();
+			this.resetGame();
 		}
+	}
+	
+	/* Kutsutaan kun juompi kumpi 
+	 * pelaajista saa pisteen
+	 */
+	public void resetGame() {
+		// palauttaa pallon keskipisteeseen maalin jalkeen
+		this.pallo.resetPallo();
 	}
 
 	public void draw(Graphics2D g) {

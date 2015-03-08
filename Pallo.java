@@ -17,22 +17,23 @@ public class Pallo {
 		vx=vauhti;
 		vy=vauhti;
 		rajat = new Rectangle(x, y, koko, koko);
-		rajat.setBounds(this.x, this.y, this.koko, this.koko);
 	}
 
 	public void liiku(GameOn g) {
-		rajat.setBounds(x, y, koko, koko);
+		rajat.setLocation(x, y);
 
 		if (x <= 0) {
-			vx = vauhti;
-		} else if (x + koko >= Panel.WIDTH) {
-			vx = -vauhti;
+			vx = -vx;
+		}
+		if (x >= Panel.WIDTH - this.getKoko()) {
+			vx = -vx;
 		}
 
 		if (y <= 0) {
-			vy = vauhti;
-		} else if (y + koko >= Panel.HEIGHT) {
-			vy = -vauhti;
+			vy = -vy;
+		}
+		if (y >= Panel.HEIGHT - this.getKoko()) {
+			vy = -vy;
 		}
 
 		x += vx;
@@ -49,7 +50,6 @@ public class Pallo {
 		}
 	}
 
-
 	public void render(Graphics g) {
 		g.setColor(Color.BLUE);
 		g.fillOval(x, y, koko, koko);
@@ -61,6 +61,19 @@ public class Pallo {
 	
 	public int getY() {
 		return this.y;
+	}
+	
+	public void setX(int n) {
+		this.x = n;
+	}
+	
+	public void setY(int n) {
+		this.y = n;
+	}
+	
+	public void resetPallo() {
+		this.setY(Panel.HEIGHT / 2);
+		this.setX((Panel.WIDTH / 2) - (this.koko / 2));
 	}
 	
 	public int getKoko() {
