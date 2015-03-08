@@ -27,9 +27,7 @@ public class OhjeetState extends GameState {
 		Panel.cursorState = Cursor.DEFAULT_CURSOR;
 	}
 
-	public void update() {
-	
-	}
+	public void update() {}
 
 	public void draw(Graphics2D g) {
 		g.draw(ohjeetContainer);

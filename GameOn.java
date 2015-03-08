@@ -22,8 +22,6 @@ public class GameOn extends GameState{
 	// pallo
 	public Pallo pallo;
 	
-	int xT;
-	
 	public GameOn(GameStateManager gsm) {
 		this.gsm = gsm;
 		String basePath = new File("").getAbsolutePath();
@@ -47,9 +45,6 @@ public class GameOn extends GameState{
 		maila2.liiku(this);
 		pallo.liiku(this);
 		Pallo p = this.pallo;
-		if (p.getX() > xT) {
-			xT = p.getX();
-		}
 		if (p.getX() == 0) {
 			this.maila1.lisaaPiste();
 		}
@@ -118,13 +113,10 @@ public class GameOn extends GameState{
 		}
 	}
 
-	public void mousePressed(MouseEvent k) {	
-	}
+	public void mousePressed(MouseEvent k) {}
 	
-	public void mouseReleased(MouseEvent k) {	
-	}
+	public void mouseReleased(MouseEvent k) {}
 
-	public void mouseMoved(MouseEvent k) {
-	}
+	public void mouseMoved(MouseEvent k) {}
 
 }
