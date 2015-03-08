@@ -1,5 +1,6 @@
 package Pong2;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -9,9 +10,7 @@ import java.awt.event.MouseEvent;
 public class MenuState extends GameState {
 	
 	String[] menu = {"Yksinpeli", "Kaksinpeli", "Huipputulokset", "Ohjeet", "Lopeta"};
-	private int buttonWidth;
-	private int buttonHeight;
-	private int fontSize;
+	private int buttonWidth, buttonHeight,fontSize;
 	private Font menuFont;
 	private Rectangle yksinP, kaksinP, huippuT, ohjeet, lopeta;
 	
@@ -33,6 +32,7 @@ public class MenuState extends GameState {
 	}
 	
 	public void draw(Graphics2D g) {
+		g.setColor(Color.WHITE);
 		g.draw(yksinP);
 		g.draw(kaksinP);
 		g.draw(huippuT);
