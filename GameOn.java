@@ -12,11 +12,17 @@ import javax.swing.ImageIcon;
 
 public class GameOn extends GameState{
 	
+	// tausta kuva
 	protected Image image;
+	
 	// mailojen tiedot
 	protected int width, height, x, y;
 	protected Maila maila1, maila2;
+	
+	// pallo
 	public Pallo pallo;
+	
+	int xT;
 	
 	public GameOn(GameStateManager gsm) {
 		this.gsm = gsm;
@@ -40,19 +46,32 @@ public class GameOn extends GameState{
 		maila1.liiku(this);
 		maila2.liiku(this);
 		pallo.liiku(this);
+		Pallo p = this.pallo;
+		if (p.getX() > xT) {
+			xT = p.getX();
+		}
+		if (p.getX() == 0) {
+			this.maila1.lisaaPiste();
+		}
+		if (p.getX() == (Panel.WIDTH - p.getKoko())){
+			this.maila2.lisaaPiste();
+		}
 	}
 
 	public void draw(Graphics2D g) {
+		g.setColor(Color.WHITE);
 		// tausta
 		g.drawImage(image, 0, 0, Panel.WIDTH, Panel.HEIGHT, null);
 		// Pause teksti
 		int stringLength = (int) g.getFontMetrics().getStringBounds("Pause", g).getWidth();
 		int stringHeight = (int) g.getFontMetrics().getStringBounds("Pause", g).getHeight();
 		g.drawString("Pause", Panel.WIDTH - 40 - stringLength, Panel.HEIGHT - stringHeight);
+		stringLength = (int) g.getFontMetrics().getStringBounds(Integer.toString(this.maila1.getPisteet()), g).getWidth();
+		g.drawString(Integer.toString(this.maila1.getPisteet()), (Panel.WIDTH / 2) - 40 - stringLength, 50);
+		g.drawString(Integer.toString(this.maila2.getPisteet()), (Panel.WIDTH / 2) + 40, 50);
 		maila1.render(g);
 		maila2.render(g);
 		pallo.render(g);
-		g.setColor(Color.WHITE);
 	}
 	
 	public void keyPressed(int k) {

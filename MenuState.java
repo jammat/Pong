@@ -7,8 +7,6 @@ import java.awt.Rectangle;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
-
 public class MenuState extends GameState {
 	
 	String[] menu = {"Yksinpeli", "Kaksinpeli", "Huipputulokset", "Ohjeet", "Lopeta"};
@@ -32,8 +30,7 @@ public class MenuState extends GameState {
 	
 	public void init() {}
 	
-	public void update() {
-	}
+	public void update() {}
 	
 	public void draw(Graphics2D g) {
 		this.loopnumber++;

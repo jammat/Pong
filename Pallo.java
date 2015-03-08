@@ -54,4 +54,21 @@ public class Pallo {
 		g.setColor(Color.BLUE);
 		g.fillOval(x, y, koko, koko);
 	}
+	
+	public int getX() {
+		return this.x;
+	}
+	
+	public int getY() {
+		return this.y;
+	}
+	
+	public int getKoko() {
+		/*
+		varmaan joku juttu missa rectanglessa on 1 yksikon 
+		mittainen raja kullakin sivulla, joten leveytta tai
+		korkeutta mitattaessa taytyy vahentaa 2
+		* */
+		return this.koko - 2;
+	}
 }
