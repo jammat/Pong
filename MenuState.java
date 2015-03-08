@@ -7,15 +7,18 @@ import java.awt.Rectangle;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
+
 public class MenuState extends GameState {
 	
 	String[] menu = {"Yksinpeli", "Kaksinpeli", "Huipputulokset", "Ohjeet", "Lopeta"};
-	private int buttonWidth, buttonHeight,fontSize;
+	private int buttonWidth, buttonHeight,fontSize,loopnumber;
 	private Font menuFont;
 	private Rectangle yksinP, kaksinP, huippuT, ohjeet, lopeta;
 	
 	public MenuState(GameStateManager gsm) {
 		this.gsm = gsm;
+		loopnumber = 0;
 		buttonWidth = 400;
 		buttonHeight = 100;
 		fontSize = 40;
@@ -28,10 +31,12 @@ public class MenuState extends GameState {
 	}
 	
 	public void init() {}
+	
 	public void update() {
 	}
 	
 	public void draw(Graphics2D g) {
+		this.loopnumber++;
 		g.setColor(Color.WHITE);
 		g.draw(yksinP);
 		g.draw(kaksinP);
@@ -45,6 +50,7 @@ public class MenuState extends GameState {
 			int stringHeight = (int) g.getFontMetrics().getStringBounds(menu[i], g).getHeight();
 			g.drawString(menu[i], (Panel.WIDTH - stringLength) / 2, menuStartPos + (174 - (buttonHeight - stringHeight))* (i));
 		}
+		g.drawString(Integer.toString(loopnumber), 100, 100);
 	}
 	
 	public void keyPressed(int k) {}
