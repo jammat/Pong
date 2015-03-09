@@ -1,19 +1,19 @@
-public class AIMaila extends Maila{
+package Pong2;
 
-	public AIMaila(int x, int y) {
-		super(x,y);
-		leveys = 20;
-		korkeus = 100;
-		vauhti = 5;
+public class AIMaila extends Maila {
+	public AIMaila(int x, int y, int leveys, int korkeus) {
+		super(x, y, leveys, korkeus);
 	}
 
 	@Override
-	public void liiku(Pong peli) {
-		rajat.setBounds(x, y, leveys, korkeus);
-		if(Pong.pallo.y <= y && y >= 0 && Pong.pallo.x > 465 && Pong.pallo.x < 1105 && Pong.pallo.vx == Pong.pallo.vauhti)
-			y -= vauhti;
-		if(Pong.pallo.y > y && y + korkeus <= peli.getHeight() && Pong.pallo.x > 465 && Pong.pallo.x < 1105 && Pong.pallo.vx == Pong.pallo.vauhti)
-			y += vauhti;
-	}
-
+	public void liiku(GameOn g) {
+		this.rajat.setLocation(x, y);
+		// jos pallo on oikealla kenttapuolella
+		if (g.pallo.x > 465 && g.pallo.x < 1216) {
+			if(g.pallo.getY() <= y)
+				y -= vauhti + 2;
+			if(g.pallo.getY() >= y && y <= g.pallo.y - korkeus)
+				y += vauhti + 2;
+		}
+	}	
 }
