@@ -1,13 +1,13 @@
 package Pong2;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class Pallo {
 	int x, y;
 	int koko = 16;
-	int vauhti = 6;
+	int vauhti = 6; // varmuuden vuoksi oletusarvo
 	int vx, vy;
 	Rectangle rajat;
 
@@ -23,17 +23,17 @@ public class Pallo {
 		rajat.setLocation(x, y);
 
 		if (x <= 0) {
-			vx = -vx;
+			vx = vauhti;
 		}
 		if (x >= Panel.WIDTH - this.getKoko()) {
-			vx = -vx;
+			vx = -vauhti;
 		}
 
 		if (y <= 0) {
-			vy = -vy;
+			vy = vauhti;
 		}
 		if (y >= Panel.HEIGHT - this.getKoko()) {
-			vy = -vy;
+			vy = -vauhti;
 		}
 
 		x += vx;
@@ -50,9 +50,14 @@ public class Pallo {
 		}
 	}
 
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
+		rajat.setLocation(x, y);
 		g.setColor(Color.BLUE);
 		g.fillOval(x, y, koko, koko);
+	}
+	
+	public void setVauhti(int n) {
+		this.vauhti = n;
 	}
 	
 	public int getX() {
@@ -77,11 +82,6 @@ public class Pallo {
 	}
 	
 	public int getKoko() {
-		/*
-		varmaan joku juttu missa rectanglessa on 1 yksikon 
-		mittainen raja kullakin sivulla, joten leveytta tai
-		korkeutta mitattaessa taytyy vahentaa 2
-		* */
-		return this.koko - 2;
+		return this.koko;
 	}
 }

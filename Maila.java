@@ -18,14 +18,13 @@ public class Maila {
 		this.leveys = leveys;
 		pisteet = 0;
 		rajat = new Rectangle(x, y, leveys, korkeus);
-		rajat.setBounds(x, y, leveys, korkeus);
 		vauhti = 5;
 		ylos = false;
 		alas = false;
 	}
 
 	public void liiku(GameOn g) {
-		rajat.setBounds(x, y, leveys, korkeus);
+		rajat.setLocation(x, y);
 		if(ylos && y > 0)
 			y -= vauhti;
 		if(alas && y < Panel.HEIGHT - korkeus)

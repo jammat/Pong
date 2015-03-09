@@ -18,6 +18,8 @@ public class GameStateManager {
 		states.add(new GameOn(this));
 		states.add(new GameAI(this));
 		states.add(new OhjeetState(this));
+		states.add(new AsetuksetState(this));
+		states.add(new PauseState(this));
 		states.get(currentState).update();
 	}
 	
@@ -56,5 +58,9 @@ public class GameStateManager {
 	
 	public int getCurrentState() {
 		return currentState;
+	}
+	
+	public GameState getState(int n) {
+		return this.states.get(n);
 	}
 }

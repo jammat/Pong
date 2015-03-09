@@ -10,6 +10,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 import javax.swing.JPanel;
 
@@ -38,11 +43,18 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 	
 	// GameStateManager
 	private GameStateManager gsm;
+	
+	// Asetustiedosto
+	public static Properties ASETUKSET;
+	
+	// Asetukset
+	public static int VAIKEUSASTE;
 
 	public Panel() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setFocusable(true);
 		requestFocus();
+		Panel.ASETUKSET = new Properties();
 	}
 	
 	public void addNotify() {
@@ -58,6 +70,22 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 	}
 	
 	public void init() {
+		File asetuksetTiedosto = new File("Pong2/settings.cfg");
+		try {
+			if (asetuksetTiedosto.createNewFile()) {
+				ASETUKSET.load(new FileInputStream(asetuksetTiedosto));
+				FileOutputStream fos = new FileOutputStream(asetuksetTiedosto);
+				ASETUKSET.put("difficulty", "1");
+				ASETUKSET.store(fos, "Difficulty level");
+				fos.close();
+				VAIKEUSASTE = 1;
+			} else {
+				ASETUKSET.load(new FileInputStream(asetuksetTiedosto));
+				VAIKEUSASTE = Integer.parseInt(Panel.ASETUKSET.getProperty("difficulty"));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D) image.getGraphics();
 		
@@ -78,6 +106,25 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 		Graphics g2 = getGraphics();
 		g2.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
 		g2.dispose();
+	}
+	
+	/* Kayta tata metodia, kun suljet ohjelman, silla
+	 * se tallentaa asetukset
+	 */
+	public static void quit() {
+		File asetuksetTiedosto = new File("Pong2/settings.cfg");
+		try {
+			if (VAIKEUSASTE != Integer.parseInt(Panel.ASETUKSET.getProperty("difficulty"))) {
+				ASETUKSET.load(new FileInputStream(asetuksetTiedosto));
+				FileOutputStream fos = new FileOutputStream(asetuksetTiedosto);
+				ASETUKSET.put("difficulty", Integer.toString(VAIKEUSASTE));
+				ASETUKSET.store(fos, "difficulty");
+				fos.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.exit(0);
 	}
 	
 	public void run() {
@@ -108,6 +155,10 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 		}
 	}
 	
+	public static void setVaikeusAste(int n) {
+		Panel.VAIKEUSASTE = n;
+	}
+	
 	public void keyPressed(KeyEvent k) {
 		gsm.keyPressed(k.getKeyCode());
 	}
@@ -130,7 +181,7 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 		try {
 			gsm.mouseMoved(e);
 		} catch (NullPointerException ex) {
-			// .... :(
+			// ei ideaa miksi heittaa erroria
 		}
 	}
 

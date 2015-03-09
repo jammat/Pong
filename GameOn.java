@@ -22,6 +22,7 @@ public class GameOn extends GameState{
 	// pallo
 	public Pallo pallo;
 	
+	
 	public GameOn(GameStateManager gsm) {
 		this.gsm = gsm;
 		String basePath = new File("").getAbsolutePath();
@@ -38,6 +39,14 @@ public class GameOn extends GameState{
 	
 	public void init() {
 		Panel.cursorState = Cursor.DEFAULT_CURSOR;
+		// asetetaan vaikeuaste tassa
+		if ( Panel.VAIKEUSASTE == 0 ) {
+			this.pallo.setVauhti(5);
+		} else if ( Panel.VAIKEUSASTE == 1 ) {
+			this.pallo.setVauhti(6);
+		} else if (Panel.VAIKEUSASTE == 2) {
+			this.pallo.setVauhti(7);
+		}
 	}
 
 	public void update() {	
@@ -45,14 +54,12 @@ public class GameOn extends GameState{
 		maila2.liiku(this);
 		pallo.liiku(this);
 		Pallo p = this.pallo;
-		// syysta x pienin y-koordinaatti on -4 ja 0 ei toimi
-		if (p.getX() == -4) {
-			this.maila1.lisaaPiste();
+		if (p.getX() <= 0) {
+			this.maila2.lisaaPiste();
 			this.resetGame();
 		}
-		// isoin koordinaatti on 1268 joten +2, en tieda miksi
-		if (p.getX() == (Panel.WIDTH - p.getKoko() + 2)){
-			this.maila2.lisaaPiste();
+		if (p.getX() >= (Panel.WIDTH - p.getKoko())){
+			this.maila1.lisaaPiste();
 			this.resetGame();
 		}
 	}
@@ -70,12 +77,10 @@ public class GameOn extends GameState{
 		// tausta
 		g.drawImage(image, 0, 0, Panel.WIDTH, Panel.HEIGHT, null);
 		// Pause teksti
-		int stringLength = (int) g.getFontMetrics().getStringBounds("Pause", g).getWidth();
-		int stringHeight = (int) g.getFontMetrics().getStringBounds("Pause", g).getHeight();
-		g.drawString("Pause", Panel.WIDTH - 40 - stringLength, Panel.HEIGHT - stringHeight);
-		stringLength = (int) g.getFontMetrics().getStringBounds(Integer.toString(this.maila1.getPisteet()), g).getWidth();
-		g.drawString(Integer.toString(this.maila1.getPisteet()), (Panel.WIDTH / 2) - 40 - stringLength, 50);
-		g.drawString(Integer.toString(this.maila2.getPisteet()), (Panel.WIDTH / 2) + 40, 50);
+		int stringLength = (int) g.getFontMetrics().getStringBounds(Integer.toString(this.maila1.getPisteet()), g).getWidth();
+		int stringHeight = (int) g.getFontMetrics().getStringBounds(Integer.toString(this.maila1.getPisteet()), g).getHeight();
+		g.drawString(Integer.toString(this.maila1.getPisteet()), (Panel.WIDTH / 2) - 20 - stringLength, 20 + stringHeight);
+		g.drawString(Integer.toString(this.maila2.getPisteet()), (Panel.WIDTH / 2) + 20, 20 + stringHeight);
 		maila1.render(g);
 		maila2.render(g);
 		pallo.render(g);
@@ -85,7 +90,7 @@ public class GameOn extends GameState{
 		int nappi = k;
 
 		if(nappi == KeyEvent.VK_P){
-			gsm.setState(0);
+			gsm.setState(5);
 		}
 		
 		if(nappi == KeyEvent.VK_W){

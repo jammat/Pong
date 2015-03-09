@@ -14,7 +14,7 @@ public class GameAI extends GameOn{
 		int nappi = k;
 
 		if(nappi == KeyEvent.VK_P){
-			gsm.setState(0);
+			gsm.setState(5);
 		}
 		
 		if(nappi == KeyEvent.VK_W){
