@@ -1,4 +1,4 @@
-package Pong2;
+
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.io.File;
 
 import javax.swing.ImageIcon;
 
@@ -14,6 +13,7 @@ public class GameOn extends GameState{
 	
 	// tausta kuva
 	protected Image image;
+	protected static String IMAGEPOLKU = Panel.BASEPATH + "//kentta.jpg";
 	
 	// mailojen tiedot
 	protected int width, height, x, y;
@@ -25,8 +25,7 @@ public class GameOn extends GameState{
 	
 	public GameOn(GameStateManager gsm) {
 		this.gsm = gsm;
-		String basePath = new File("").getAbsolutePath();
-		ImageIcon i = new ImageIcon(basePath + "/Pong2/kentta.jpg");
+		ImageIcon i = new ImageIcon(IMAGEPOLKU);
 		this.image = i.getImage();
 		width = 20;
 		height = 100;

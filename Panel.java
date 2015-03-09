@@ -1,4 +1,4 @@
-package Pong2;
+
 
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -50,6 +50,11 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 	// Asetukset
 	public static int VAIKEUSASTE;
 
+	// Polku tiedostojuureen
+	public static final String BASEPATH = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+	// Polku asetuksiin
+	public static final String SETTINGSPATH = BASEPATH + "//settings.cfg";
+	
 	public Panel() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setFocusable(true);
@@ -70,7 +75,7 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 	}
 	
 	public void init() {
-		File asetuksetTiedosto = new File("Pong2/settings.cfg");
+		File asetuksetTiedosto = new File(SETTINGSPATH);
 		try {
 			if (asetuksetTiedosto.createNewFile()) {
 				ASETUKSET.load(new FileInputStream(asetuksetTiedosto));
@@ -112,7 +117,7 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 	 * se tallentaa asetukset
 	 */
 	public static void quit() {
-		File asetuksetTiedosto = new File("Pong2/settings.cfg");
+		File asetuksetTiedosto = new File(SETTINGSPATH);
 		try {
 			if (VAIKEUSASTE != Integer.parseInt(Panel.ASETUKSET.getProperty("difficulty"))) {
 				ASETUKSET.load(new FileInputStream(asetuksetTiedosto));

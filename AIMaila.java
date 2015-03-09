@@ -1,4 +1,6 @@
-package Pong2;
+
+
+
 
 public class AIMaila extends Maila {
 	public AIMaila(int x, int y, int leveys, int korkeus) {
