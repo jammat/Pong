@@ -69,6 +69,11 @@ public class GameOn extends GameState{
 	public void resetGame() {
 		// palauttaa pallon keskipisteeseen maalin jalkeen
 		this.pallo.resetPallo();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void draw(Graphics2D g) {
