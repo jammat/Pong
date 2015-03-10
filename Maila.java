@@ -36,6 +36,10 @@ public class Maila {
 		g.fillRect(x, y, leveys, korkeus);
 	}
 	
+	public void setVauhti(int n) {
+		this.vauhti = n;
+	}
+	
 	public void lisaaPiste() {
 		this.pisteet++;
 	}
