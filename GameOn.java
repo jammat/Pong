@@ -43,14 +43,20 @@ public class GameOn extends GameState{
 			this.pallo.setVauhti(5);
 			this.maila1.setVauhti(4);
 			this.maila2.setVauhti(4);
+			maila1.korkeus = 100;
+			maila2.korkeus = 100;
 		} else if ( Panel.VAIKEUSASTE == 1 ) {
 			this.pallo.setVauhti(6);
 			this.maila1.setVauhti(5);
 			this.maila2.setVauhti(5);
+			maila1.korkeus = 80;
+			maila2.korkeus = 80;
 		} else if (Panel.VAIKEUSASTE == 2) {
 			this.pallo.setVauhti(7);
 			this.maila1.setVauhti(6);
 			this.maila2.setVauhti(6);
+			maila1.korkeus = 60;
+			maila2.korkeus = 60;
 		}
 	}
 
