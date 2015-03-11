@@ -39,12 +39,18 @@ public class GameOn extends GameState{
 	public void init() {
 		Panel.cursorState = Cursor.DEFAULT_CURSOR;
 		// asetetaan vaikeuaste tassa
-		if ( Panel.VAIKEUSASTE == 0 ) {
+			if ( Panel.VAIKEUSASTE == 0 ) {
 			this.pallo.setVauhti(5);
+			this.maila1.setVauhti(4);
+			this.maila2.setVauhti(4);
 		} else if ( Panel.VAIKEUSASTE == 1 ) {
 			this.pallo.setVauhti(6);
+			this.maila1.setVauhti(5);
+			this.maila2.setVauhti(5);
 		} else if (Panel.VAIKEUSASTE == 2) {
 			this.pallo.setVauhti(7);
+			this.maila1.setVauhti(6);
+			this.maila2.setVauhti(6);
 		}
 	}
 
@@ -69,6 +75,11 @@ public class GameOn extends GameState{
 	public void resetGame() {
 		// palauttaa pallon keskipisteeseen maalin jalkeen
 		this.pallo.resetPallo();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void draw(Graphics2D g) {
