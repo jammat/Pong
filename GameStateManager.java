@@ -20,6 +20,7 @@ public class GameStateManager {
 		states.add(new OhjeetState(this));
 		states.add(new AsetuksetState(this));
 		states.add(new PauseState(this));
+		states.add(new HuipputuloksetState(this));
 		states.get(currentState).update();
 	}
 	

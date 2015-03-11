@@ -67,7 +67,7 @@ public class MenuState extends GameState {
 			gsm.setState(1);
 		}
 		if (huippuT.contains(Panel.mouseX, Panel.mouseY)) {
-			// huipputulokset -tila
+			gsm.setState(6);
 		}
 		if (ohjeet.contains(Panel.mouseX, Panel.mouseY)) {
 			gsm.setState(3);

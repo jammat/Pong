@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 
 public class Panel extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener {
 	private static final long serialVersionUID = 1L;
+	public static HSManager hm;
 	
 	// kursorin paikka naytolla
 	public static int mouseX, mouseY;
@@ -75,6 +76,7 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 	}
 	
 	public void init() {
+		hm = new HSManager(); // luodaan huipputulosten hallintaa varten
 		File asetuksetTiedosto = new File(SETTINGSPATH);
 		try {
 			if (asetuksetTiedosto.createNewFile()) {
