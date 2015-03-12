@@ -57,7 +57,7 @@ public class HSManager {
             outputStream = new ObjectOutputStream(new FileOutputStream(HIGHSCORE_FILE));
             outputStream.writeObject(scores);
         } catch (FileNotFoundException e) {
-            System.out.println("Tiedostoa ei lšydy: " + e.getMessage() + ", ohjelma tekee uuden tiedoston");
+            System.out.println("Tiedostoa ei lšydy, ohjelma luo uuden tiedoston");
         } catch (IOException e) {
             System.out.println("IO Error: " + e.getMessage());
         } finally {
@@ -70,24 +70,5 @@ public class HSManager {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-    }
-    
-    public String getHSString() {
-        String hsString = "";
-        int max = 10;
-
-        ArrayList<Score> scores;
-        scores = getScores();
-
-        int i = 0;
-        int x = scores.size();
-        if (x > max) {
-            x = max;
-        }
-        while (i < x) {
-            hsString += (i + 1) + ".\t" + scores.get(i).getNaam() + "\t\t" + scores.get(i).getScore() + "\n";
-            i++;
-        }
-        return hsString;
     }
 }

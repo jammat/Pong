@@ -87,6 +87,11 @@ public class PauseState extends GameState {
 			gsm.setState(2);
 		}
 		if (menu.contains(Panel.mouseX, Panel.mouseY)){
+			
+			/* if () {
+				Panel.hm.addScore("Testipelaaja", );
+			} */
+			
 			gsm.setState(0);
 		}
 		if (lopeta.contains(Panel.mouseX, Panel.mouseY)){

@@ -42,7 +42,11 @@ public class HuipputuloksetState extends GameState {
 		g.drawString("Huipputulokset", (Panel.WIDTH - stringLength) / 2, 20 + stringHeight + (Panel.HEIGHT - height) / 2);
 		g.setFont(leipateksti);
 		
-		g.drawString(Panel.hm.getHSString(), (Panel.WIDTH - width + 80) / 2, stringHeight + 60 + (Panel.HEIGHT - height) / 2);
+		for (int i = 0; i < Panel.hm.getScores().size(); i++) {
+			System.out.println("y");
+			g.drawString((i + 1) + ".\t" + Panel.hm.getScores().get(i).getNaam() + "\t\t" + Panel.hm.getScores().get(i).getScore(), (Panel.WIDTH - width + 80) / 2, stringHeight + 60 + (Panel.HEIGHT - height) / 2 + stringHeight * i);
+		}
+		
 		g.setFont(nappain);
 		g.setColor(Color.BLACK);
 		g.drawString("Takaisin", (Panel.WIDTH - width) / 2 + 60, Panel.HEIGHT - ((Panel.HEIGHT - height) / 2) - 12);

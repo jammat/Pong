@@ -131,6 +131,7 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		System.exit(0);
 	}
 	
