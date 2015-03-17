@@ -57,7 +57,7 @@ public class HSManager {
             outputStream = new ObjectOutputStream(new FileOutputStream(HIGHSCORE_FILE));
             outputStream.writeObject(scores);
         } catch (FileNotFoundException e) {
-            System.out.println("Tiedostoa ei lšydy, ohjelma luo uuden tiedoston");
+            System.out.println("Tiedostoa ei lšydy, luodaan uusi tiedosto");
         } catch (IOException e) {
             System.out.println("IO Error: " + e.getMessage());
         } finally {
