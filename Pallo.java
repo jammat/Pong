@@ -42,10 +42,12 @@ public class Pallo {
 		mailaosuma(g);
 	}
 
-	private void mailaosuma(GameOn g){
+		private void mailaosuma(GameOn g){
 		if (rajat.intersects(g.maila1.rajat)) {
+			AIMaila.heitto = AIMaila.luku.nextInt(20);
 			vx = vauhti;
 		} else if (rajat.intersects(g.maila2.rajat)) {
+			AIMaila.heitto = AIMaila.luku.nextInt(20);
 			vx = -vauhti;
 		}
 	}
