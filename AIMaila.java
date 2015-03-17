@@ -1,6 +1,4 @@
-
-
-
+import java.util.Random;
 
 public class AIMaila extends Maila {
 	public AIMaila(int x, int y, int leveys, int korkeus) {
@@ -27,4 +25,5 @@ public class AIMaila extends Maila {
 			if(g.pallo.getY() + heitto - 5 >= y && y <= g.pallo.y - korkeus)
 				y += vauhti + 1;
 		}
-	}	
+	}
+}
