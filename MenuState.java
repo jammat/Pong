@@ -9,10 +9,10 @@ import java.awt.event.MouseEvent;
 
 public class MenuState extends GameState {
 	
-	String[] menu = {"Yksinpeli", "Kaksinpeli", "Huipputulokset", "Ohjeet", "Asetukset", "Lopeta"};
+	String[] menu = {"Yksinpeli", "Kaksinpeli", "Lataa peli", "Huipputulokset", "Ohjeet", "Asetukset", "Lopeta"};
 	private int buttonWidth, buttonHeight,fontSize,loopnumber;
 	private Font menuFont;
-	private Rectangle tausta, yksinP, kaksinP, huippuT, ohjeet, asetukset, lopeta;
+	private Rectangle tausta, yksinP, kaksinP, loadN, huippuT, ohjeet, asetukset, lopeta;
 	
 	public MenuState(GameStateManager gsm) {
 		this.gsm = gsm;
@@ -23,11 +23,12 @@ public class MenuState extends GameState {
 		menuFont = new Font("Arial", Font.BOLD, fontSize);
 		tausta = new Rectangle(0,0,Panel.WIDTH, Panel.HEIGHT);
 		yksinP = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 40, buttonWidth, buttonHeight);
-		kaksinP = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 150, buttonWidth, buttonHeight);
-		huippuT = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 260, buttonWidth, buttonHeight);
-		ohjeet = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 370, buttonWidth, buttonHeight);
-		asetukset = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 480, buttonWidth, buttonHeight);
-		lopeta = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 590, buttonWidth, buttonHeight);
+		kaksinP = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 125, buttonWidth, buttonHeight);
+		loadN = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 210, buttonWidth, buttonHeight);
+		huippuT = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 295, buttonWidth, buttonHeight);
+		ohjeet = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 380, buttonWidth, buttonHeight);
+		asetukset = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 465, buttonWidth, buttonHeight);
+		lopeta = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 550, buttonWidth, buttonHeight);
 	}
 	
 	public void init() {}
@@ -42,6 +43,7 @@ public class MenuState extends GameState {
 		g.setColor(Color.WHITE);
 		g.draw(yksinP);
 		g.draw(kaksinP);
+		g.draw(loadN);
 		g.draw(huippuT);
 		g.draw(ohjeet);
 		g.draw(asetukset);
@@ -51,7 +53,7 @@ public class MenuState extends GameState {
 		for (int i = 0; i < menu.length; i++) {
 			int stringLength = (int) g.getFontMetrics().getStringBounds(menu[i], g).getWidth();
 			int stringHeight = (int) g.getFontMetrics().getStringBounds(menu[i], g).getHeight();
-			g.drawString(menu[i], (Panel.WIDTH - stringLength) / 2, menuStartPos + (155 - (buttonHeight - stringHeight))* (i));
+			g.drawString(menu[i], (Panel.WIDTH - stringLength) / 2, menuStartPos + (130 - (buttonHeight - stringHeight))* (i));
 		}
 		g.drawString(Integer.toString(loopnumber), 100, 100);
 	}
@@ -77,6 +79,9 @@ public class MenuState extends GameState {
 		}
 		if (lopeta.contains(Panel.mouseX, Panel.mouseY)) {
 			Panel.quit();
+		}
+		if (loadN.contains(Panel.mouseX, Panel.mouseY)) {
+			// tŠhŠn skripta, joka lataa pelin
 		}
 	}
 
