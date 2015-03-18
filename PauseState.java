@@ -98,9 +98,15 @@ public class PauseState extends GameState {
 			gsm.setState(0);
 		}
 		
-		// tässä kohtaa tallennetaan huipputulos
+		// tassa kohtaa tallennetaan huipputulos
 		if (lopeta.contains(Panel.mouseX, Panel.mouseY)){
-			Panel.hm.addScore("Testipelaaja", 3);
+			if (GameStateManager.lastState == 2) {
+				Panel.hm.addScore("Yksinpelin pelaajan nimi", ((GameOn)GameStateManager.states.get(2)).getMaila1Pisteet());
+			}
+			if (GameStateManager.lastState == 1) {
+				Panel.hm.addScore("Pelaajan 1 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila1Pisteet());
+				Panel.hm.addScore("Pelaajan 2 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila2Pisteet());
+			}
 			Panel.quit();
 		}	
 		

@@ -40,8 +40,15 @@ public class HuipputuloksetState extends GameState {
 		g.drawString("Huipputulokset", (Panel.WIDTH - stringLength) / 2, 20 + stringHeight + (Panel.HEIGHT - height) / 2);
 		g.setFont(leipateksti);
 		
-		for (int i = 0; i < Panel.hm.getScores().size(); i++) {
-			g.drawString((i + 1) + ".\t" + Panel.hm.getScores().get(i).getNaam() + ",\t\t" + Panel.hm.getScores().get(i).getScore(), (Panel.WIDTH - width + 80) / 2, stringHeight + 60 + (Panel.HEIGHT - height) / 2 + stringHeight * i);
+		g.drawString("Yksinpelin tulokset", (Panel.WIDTH - width + 80) / 2, stringHeight + 60 + (Panel.HEIGHT - height) / 2);
+		g.drawString("Kaksinpelin tulokset", (Panel.WIDTH - width + 80) / 2 + 400, stringHeight + 60 + (Panel.HEIGHT - height) / 2);
+		
+		for (int i = 0; i < Panel.hm.getScoresYksinpeli().size(); i++) {
+			g.drawString((i + 1) + ".\t" + Panel.hm.getScoresYksinpeli().get(i).getNaam() + ",\t\t" + Panel.hm.getScoresYksinpeli().get(i).getScore(), (Panel.WIDTH - width + 80) / 2, stringHeight + 60 + 40 + (Panel.HEIGHT - height) / 2 + stringHeight * i);
+		}
+		
+		for (int i = 0; i < Panel.hm.getScoresKaksinpeli().size(); i++) {
+			g.drawString((i + 1) + ".\t" + Panel.hm.getScoresKaksinpeli().get(i).getNaam() + ",\t\t" + Panel.hm.getScoresKaksinpeli().get(i).getScore(), (Panel.WIDTH - width + 80) / 2 + 400, stringHeight + 60 + 40 + (Panel.HEIGHT - height) / 2 + stringHeight * i);
 		}
 		
 		g.setFont(nappain);

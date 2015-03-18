@@ -6,8 +6,9 @@ import java.util.ArrayList;
 
 public class GameStateManager {
 	
-	private ArrayList<GameState> states;
+	public static ArrayList<GameState> states;
 	private int currentState;
+	public static int lastState;
 	
 	public static final int MENUSTATE = 0;
 	public static final int WAVE1STATE = 1;
@@ -53,6 +54,7 @@ public class GameStateManager {
 	}
 	
 	public void setState(int state) {
+		lastState = currentState;
 		currentState = state;
 		states.get(state).init();
 	}

@@ -3,9 +3,9 @@ import java.io.*;
 
 public class HSManager {
     private ArrayList<Score> scores;
-    public static final String HIGHSCORE_FILE = Panel.BASEPATH + "//tulokset.dat"; // tulokset tallennetaan tiedostoon
+    public static final String HUIPPUTULOKSET_YKSINPELI = Panel.BASEPATH + "//yksinpelitulokset.dat"; // tulokset tallennetaan tiedostoon
+    public static final String HUIPPUTULOKSET_KAKSINPELI = Panel.BASEPATH + "//kaksinpelitulokset.dat";
 
-    // tarvitaan, jotta voidaan ladata ja tallentaa tuloksia tulokset.dat -tiedostoon
     ObjectOutputStream outputStream = null;
     ObjectInputStream inputStream = null;
 
@@ -15,6 +15,18 @@ public class HSManager {
     
     public ArrayList<Score> getScores() {
         loadScoreFile();
+        sort();
+        return scores;
+    }
+    
+    public ArrayList<Score> getScoresYksinpeli() {
+        loadScoreFileYksinpeli();
+        sort();
+        return scores;
+    }
+    
+    public ArrayList<Score> getScoresKaksinpeli() {
+        loadScoreFileKaksinpeli();
         sort();
         return scores;
     }
@@ -32,7 +44,55 @@ public class HSManager {
     
     public void loadScoreFile() {
         try {
-            inputStream = new ObjectInputStream(new FileInputStream(HIGHSCORE_FILE));
+        	if (GameStateManager.lastState == 1) {
+        		inputStream = new ObjectInputStream(new FileInputStream(HUIPPUTULOKSET_KAKSINPELI));
+        	} else {
+        		inputStream = new ObjectInputStream(new FileInputStream(HUIPPUTULOKSET_YKSINPELI));
+        	}
+            scores = (ArrayList<Score>) inputStream.readObject();
+        } catch (FileNotFoundException e) {
+            System.out.println("Tiedostoa ei lšydy: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("IO Error: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println("Luokkaa ei lšydy: " + e.getMessage());
+        } finally {
+            try {
+                if (outputStream != null) {
+                    outputStream.flush();
+                    outputStream.close();
+                }
+            } catch (IOException e) {
+                System.out.println("IO Error: " + e.getMessage());
+            }
+        }
+    }
+    
+    public void loadScoreFileYksinpeli() {
+    	try {
+        	inputStream = new ObjectInputStream(new FileInputStream(HUIPPUTULOKSET_YKSINPELI));
+            scores = (ArrayList<Score>) inputStream.readObject();
+        } catch (FileNotFoundException e) {
+            System.out.println("Tiedostoa ei lšydy: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("IO Error: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println("Luokkaa ei lšydy: " + e.getMessage());
+        } finally {
+            try {
+                if (outputStream != null) {
+                    outputStream.flush();
+                    outputStream.close();
+                }
+            } catch (IOException e) {
+                System.out.println("IO Error: " + e.getMessage());
+            }
+        }
+    }
+    
+    public void loadScoreFileKaksinpeli() {
+    	try {
+        	inputStream = new ObjectInputStream(new FileInputStream(HUIPPUTULOKSET_KAKSINPELI));
             scores = (ArrayList<Score>) inputStream.readObject();
         } catch (FileNotFoundException e) {
             System.out.println("Tiedostoa ei lšydy: " + e.getMessage());
@@ -54,7 +114,11 @@ public class HSManager {
     
     public void updateScoreFile() {
         try {
-            outputStream = new ObjectOutputStream(new FileOutputStream(HIGHSCORE_FILE));
+        	if (GameStateManager.lastState == 1) {
+        		outputStream = new ObjectOutputStream(new FileOutputStream(HUIPPUTULOKSET_KAKSINPELI));
+        	} else {
+        		outputStream = new ObjectOutputStream(new FileOutputStream(HUIPPUTULOKSET_YKSINPELI));
+        	}
             outputStream.writeObject(scores);
         } catch (FileNotFoundException e) {
             System.out.println("Tiedostoa ei lšydy, luodaan uusi tiedosto");
