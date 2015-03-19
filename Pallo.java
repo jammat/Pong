@@ -1,9 +1,10 @@
-
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+/* Luokan avulla voidaan luoda ja piirtaa
+ * peliin pallo.
+ */
 public class Pallo {
 	int x, y;
 	int koko = 16;

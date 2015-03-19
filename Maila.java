@@ -1,9 +1,10 @@
-
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/* Luokan avulla voidaan luodaan mailat 
+ * pelia varten.
+ */
 public class Maila {
 
 	protected int x, y, leveys, korkeus, vauhti;

@@ -1,7 +1,9 @@
-
-
 import java.awt.event.KeyEvent;
 
+/* GameAI perii GameOn-luokan, joka perii abstraktin
+ * GameState-luokan. GameAI luokan oliossa maila2
+ * korvataan AImaila oliolla.
+ */
 public class GameAI extends GameOn{
 
 	public GameAI(GameStateManager gsm) {

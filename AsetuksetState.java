@@ -1,5 +1,3 @@
-
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -7,6 +5,10 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
+/* Luokka perii abstraktin GameState luokan ja toeuttaa
+ * vaadittavat metodit. Luokka piirt‰‰ menutilan, jossa
+ * pelaaja voi vaihtaa vaikeusastetta.
+ */
 public class AsetuksetState extends GameState {
 	
 	private Rectangle asetuksetContainer, helppo, normaali, vaikea, takaisin;

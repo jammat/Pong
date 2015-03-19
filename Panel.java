@@ -1,5 +1,3 @@
-
-
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -15,9 +13,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener {

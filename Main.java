@@ -1,7 +1,6 @@
-
-
 import javax.swing.JFrame;
 
+/* Luokkaa kaytetaan pelin kutsumiseen. */
 public class Main {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Bala Maui");

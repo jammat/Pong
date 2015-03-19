@@ -1,17 +1,28 @@
-
-
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+/* Luokka vastaa oikean pelitilan yllapidosta, seka
+ * listaa kaikki saatavalla olevat pelitilat states attribuutissa.
+ * Pelitilaan viitataan kokonaislukumuuttuja attribuutein,
+ * missa kokonaisluku on tilan paikka ArrayList oliossa.
+ */
 public class GameStateManager {
 	
 	public static ArrayList<GameState> states;
 	private int currentState;
-	public static int lastState;
+	public static int LASTSTATE;
 	
-	public static final int MENUSTATE = 0;
-	public static final int WAVE1STATE = 1;
+	/* maaritetaan attribuutit joilla
+	 * oikeaan pelitilaan viitataan
+	 */
+	public static final int MENU = 0;
+	public static final int YKSINPELI = 1;
+	public static final int KAKSINPELI = 2;
+	public static final int OHJEET = 3;
+	public static final int ASETUKSET = 4;
+	public static final int PAUSE = 5;
+	public static final int HUIPPU = 6;
 	
 	public GameStateManager() {
 		states = new ArrayList<GameState>();
@@ -25,6 +36,23 @@ public class GameStateManager {
 		states.get(currentState).update();
 	}
 	
+	public void setState(int state) {
+		LASTSTATE = currentState;
+		currentState = state;
+		states.get(state).init();
+	}
+	
+	public int getCurrentState() {
+		return currentState;
+	}
+	
+	public GameState getState(int n) {
+		return GameStateManager.states.get(n);
+	}
+	
+	/* Maaritetaan metodit, jotka hakevat tarvittavat metodit 
+	 * oikeasta pelitilasta ja valittavat tarvittaessa parametrit.
+	 */
 	public void update() {
 		states.get(currentState).update();
 	}
@@ -53,17 +81,4 @@ public class GameStateManager {
 		states.get(currentState).mouseMoved(e);
 	}
 	
-	public void setState(int state) {
-		lastState = currentState;
-		currentState = state;
-		states.get(state).init();
-	}
-	
-	public int getCurrentState() {
-		return currentState;
-	}
-	
-	public GameState getState(int n) {
-		return this.states.get(n);
-	}
 }

@@ -1,5 +1,3 @@
-
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -7,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
+/* Piirtaa ohjeet kayttajalle
+ */
 public class OhjeetState extends GameState {
 	private Rectangle ohjeetContainer, takaisin;
 	private int width, height;
@@ -49,12 +49,9 @@ public class OhjeetState extends GameState {
 		g.drawString("Takaisin", (Panel.WIDTH - width) / 2 + 60, Panel.HEIGHT - ((Panel.HEIGHT - height) / 2) - 12);
 	}
 
-	public void keyPressed(int k) {
-	}
+	public void keyPressed(int k) {}
 
-	public void keyReleased(int k) {
-	
-	}
+	public void keyReleased(int k) {}
 
 	public void mousePressed(MouseEvent k) {
 		if (takaisin.contains(Panel.mouseX, Panel.mouseY)) {
@@ -62,9 +59,7 @@ public class OhjeetState extends GameState {
 		}		
 	}
 
-	public void mouseReleased(MouseEvent k) {
-	
-	}
+	public void mouseReleased(MouseEvent k) {}
 
 	public void mouseMoved(MouseEvent k) {
 		if (takaisin.contains(Panel.mouseX, Panel.mouseY)) {

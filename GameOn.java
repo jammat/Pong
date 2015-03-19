@@ -1,17 +1,17 @@
-
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
+/* GameOn-luokka perii abstraktin GameState-luokan.
+ * Luokassa toteutetaan pelin piirto, seka sen
+ * kautta hallitaan pisteytysta seka vaikeusastetta.
+ */
 public class GameOn extends GameState{
 	
 	// tausta kuva

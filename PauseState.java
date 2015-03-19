@@ -1,5 +1,3 @@
-
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -10,7 +8,7 @@ import java.awt.event.MouseEvent;
 public class PauseState extends GameState {
 	
 	private Rectangle pauseContainer, jatka, menu, saveG, lopeta;
-	// 0 == nada, 1 == jatka, 2 == menu, 3 == lopeta, 4 == saveG
+	// 0 == default, 1 == jatka, 2 == menu, 3 == lopeta, 4 == saveG
 	private int hover;
 	private int width, height, btnWidth, btnHeight;
 	private Font otsikko, nappain;
@@ -83,27 +81,24 @@ public class PauseState extends GameState {
 		g.drawString("Lopeta", (int)lopeta.getX() + 150, (int)lopeta.getY() + 50);
 	}
 
-	public void keyPressed(int k) {
-	}
+	public void keyPressed(int k) {}
 
-	public void keyReleased(int k) {
-	
-	}
+	public void keyReleased(int k) {}
 
 	public void mousePressed(MouseEvent k) {
 		if (jatka.contains(Panel.mouseX, Panel.mouseY)){
-			gsm.setState(2);
+			gsm.setState(GameStateManager.LASTSTATE);
 		}
 		if (menu.contains(Panel.mouseX, Panel.mouseY)){			
-			gsm.setState(0);
+			gsm.setState(GameStateManager.MENU);
 		}
 		
 		// tassa kohtaa tallennetaan huipputulos
 		if (lopeta.contains(Panel.mouseX, Panel.mouseY)){
-			if (GameStateManager.lastState == 2) {
+			if (GameStateManager.LASTSTATE == 2) {
 				Panel.hm.addScore(((GameOn)GameStateManager.states.get(2)).getMaila1().getNimi(), ((GameOn)GameStateManager.states.get(2)).getMaila1().getPisteet());
 			}
-			if (GameStateManager.lastState == 1) {
+			if (GameStateManager.LASTSTATE == 1) {
 				Panel.hm.addScore("Pelaajan 1 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila1Pisteet());
 				Panel.hm.addScore("Pelaajan 2 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila2Pisteet());
 			}
@@ -115,9 +110,7 @@ public class PauseState extends GameState {
 		}
 	}
 
-	public void mouseReleased(MouseEvent k) {
-	
-	}
+	public void mouseReleased(MouseEvent k) {}
 
 	public void mouseMoved(MouseEvent k) {
 		if (jatka.contains(Panel.mouseX, Panel.mouseY) || menu.contains(Panel.mouseX, Panel.mouseY) || lopeta.contains(Panel.mouseX, Panel.mouseY)) {

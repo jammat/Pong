@@ -1,8 +1,9 @@
-
-
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
+/* Pelitilat perivat GameState luokan ja toteuttavat 
+ * tarvittavat luokat.
+ */
 public abstract class GameState {
 
 	protected GameStateManager gsm;

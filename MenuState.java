@@ -1,5 +1,3 @@
-
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics2D;
@@ -7,6 +5,9 @@ import java.awt.Rectangle;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 
+/* Piirtaa menun, jonka kautta pelin eri tilojen
+ * valilla voidaan liikkua.
+ */
 public class MenuState extends GameState {
 	
 	String[] menu = {"Yksinpeli", "Kaksinpeli", "Lataa peli", "Huipputulokset", "Ohjeet", "Asetukset", "Lopeta"};
@@ -63,19 +64,19 @@ public class MenuState extends GameState {
 
 	public void mousePressed(MouseEvent k) {
 		if (yksinP.contains(Panel.mouseX, Panel.mouseY)) {
-			gsm.setState(2);
+			gsm.setState(GameStateManager.YKSINPELI);
 		}
 		if (kaksinP.contains(Panel.mouseX, Panel.mouseY)) {
-			gsm.setState(1);
+			gsm.setState(GameStateManager.KAKSINPELI);
 		}
 		if (huippuT.contains(Panel.mouseX, Panel.mouseY)) {
-			gsm.setState(6);
+			gsm.setState(GameStateManager.HUIPPU);
 		}
 		if (ohjeet.contains(Panel.mouseX, Panel.mouseY)) {
-			gsm.setState(3);
+			gsm.setState(GameStateManager.OHJEET);
 		}
 		if (asetukset.contains(Panel.mouseX, Panel.mouseY)) {
-			gsm.setState(4);
+			gsm.setState(GameStateManager.ASETUKSET);
 		}
 		if (lopeta.contains(Panel.mouseX, Panel.mouseY)) {
 			Panel.quit();
@@ -85,9 +86,7 @@ public class MenuState extends GameState {
 		}
 	}
 
-	public void mouseReleased(MouseEvent k) {
-		
-	}
+	public void mouseReleased(MouseEvent k) {}
 	
 	public void mouseMoved(MouseEvent e) {
 		if (yksinP.contains(Panel.mouseX, Panel.mouseY) || kaksinP.contains(Panel.mouseX, Panel.mouseY) || ohjeet.contains(Panel.mouseX, Panel.mouseY) || asetukset.contains(Panel.mouseX, Panel.mouseY) || lopeta.contains(Panel.mouseX, Panel.mouseY)) {

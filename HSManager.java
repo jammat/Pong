@@ -42,9 +42,10 @@ public class HSManager {
         updateScoreFile();
     }
     
-    public void loadScoreFile() {
+    @SuppressWarnings("unchecked")
+	public void loadScoreFile() {
         try {
-        	if (GameStateManager.lastState == 1) {
+        	if (GameStateManager.LASTSTATE == 1) {
         		inputStream = new ObjectInputStream(new FileInputStream(HUIPPUTULOKSET_KAKSINPELI));
         	} else {
         		inputStream = new ObjectInputStream(new FileInputStream(HUIPPUTULOKSET_YKSINPELI));
@@ -68,7 +69,8 @@ public class HSManager {
         }
     }
     
-    public void loadScoreFileYksinpeli() {
+    @SuppressWarnings("unchecked")
+	public void loadScoreFileYksinpeli() {
     	try {
         	inputStream = new ObjectInputStream(new FileInputStream(HUIPPUTULOKSET_YKSINPELI));
             scores = (ArrayList<Score>) inputStream.readObject();
@@ -90,7 +92,8 @@ public class HSManager {
         }
     }
     
-    public void loadScoreFileKaksinpeli() {
+    @SuppressWarnings("unchecked")
+	public void loadScoreFileKaksinpeli() {
     	try {
         	inputStream = new ObjectInputStream(new FileInputStream(HUIPPUTULOKSET_KAKSINPELI));
             scores = (ArrayList<Score>) inputStream.readObject();
@@ -114,7 +117,7 @@ public class HSManager {
     
     public void updateScoreFile() {
         try {
-        	if (GameStateManager.lastState == 1) {
+        	if (GameStateManager.LASTSTATE == 1) {
         		outputStream = new ObjectOutputStream(new FileOutputStream(HUIPPUTULOKSET_KAKSINPELI));
         	} else {
         		outputStream = new ObjectOutputStream(new FileOutputStream(HUIPPUTULOKSET_YKSINPELI));
