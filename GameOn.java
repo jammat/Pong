@@ -167,6 +167,10 @@ public class GameOn extends GameState{
 
 	public void mouseMoved(MouseEvent k) {}
 	
+	public Maila getMaila1() {
+		return maila1;
+	}
+	
 	public int getMaila1Pisteet() {
 		return maila1.getPisteet();
 	}

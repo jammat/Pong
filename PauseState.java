@@ -101,7 +101,7 @@ public class PauseState extends GameState {
 		// tassa kohtaa tallennetaan huipputulos
 		if (lopeta.contains(Panel.mouseX, Panel.mouseY)){
 			if (GameStateManager.lastState == 2) {
-				Panel.hm.addScore("Yksinpelin pelaajan nimi", ((GameOn)GameStateManager.states.get(2)).getMaila1Pisteet());
+				Panel.hm.addScore(((GameOn)GameStateManager.states.get(2)).getMaila1().getNimi(), ((GameOn)GameStateManager.states.get(2)).getMaila1().getPisteet());
 			}
 			if (GameStateManager.lastState == 1) {
 				Panel.hm.addScore("Pelaajan 1 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila1Pisteet());
