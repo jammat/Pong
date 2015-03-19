@@ -16,6 +16,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener {
@@ -33,7 +35,7 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 	public static final int HEIGHT = WIDTH / 16 * 9;
 	
 	// pelilooppi
-	private Thread thread;
+	static Thread thread;
 	private boolean running = false;
 	private int FPS = 60;
 	private long targetTime = 1000 / FPS;

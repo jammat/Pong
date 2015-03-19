@@ -8,6 +8,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class GameOn extends GameState{
 	
@@ -21,7 +24,6 @@ public class GameOn extends GameState{
 	
 	// pallo
 	public Pallo pallo;
-	
 	
 	public GameOn(GameStateManager gsm) {
 		this.gsm = gsm;
@@ -38,8 +40,19 @@ public class GameOn extends GameState{
 	
 	public void init() {
 		Panel.cursorState = Cursor.DEFAULT_CURSOR;
-		// asetetaan vaikeuaste tassa
-			if ( Panel.VAIKEUSASTE == 0 ) {
+		Panel.thread.suspend();
+		String s = (String)JOptionPane.showInputDialog(
+				new JFrame(),
+                "Kirjoita nimesi",
+                "Anna nimi",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                "ham");
+		maila1.setNimi(s);
+		Panel.thread.resume();
+		// asetetaan vaikeusaste tassa
+		if ( Panel.VAIKEUSASTE == 0 ) {
 			this.pallo.setVauhti(5);
 			this.maila1.setVauhti(4);
 			this.maila2.setVauhti(4);
@@ -60,7 +73,7 @@ public class GameOn extends GameState{
 		}
 	}
 
-	public void update() {	
+	public void update() {
 		maila1.liiku(this);
 		maila2.liiku(this);
 		pallo.liiku(this);
@@ -96,6 +109,8 @@ public class GameOn extends GameState{
 		int stringLength = (int) g.getFontMetrics().getStringBounds(Integer.toString(this.maila1.getPisteet()), g).getWidth();
 		int stringHeight = (int) g.getFontMetrics().getStringBounds(Integer.toString(this.maila1.getPisteet()), g).getHeight();
 		g.drawString(Integer.toString(this.maila1.getPisteet()), (Panel.WIDTH / 2) - 20 - stringLength, 20 + stringHeight);
+		int stringLengthNimi = (int) g.getFontMetrics().getStringBounds(this.maila1.getNimi(), g).getWidth();
+		g.drawString(this.maila1.getNimi(), (Panel.WIDTH / 2) - 2*20 - stringLength - stringLengthNimi, 20 + stringHeight);
 		g.drawString(Integer.toString(this.maila2.getPisteet()), (Panel.WIDTH / 2) + 20, 20 + stringHeight);
 		maila1.render(g);
 		maila2.render(g);

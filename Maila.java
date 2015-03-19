@@ -10,6 +10,7 @@ public class Maila {
 	protected Rectangle rajat;	
 	protected boolean ylos, alas;
 	protected int pisteet;
+	protected String nimi;
 
 	public Maila(int x, int y, int leveys, int korkeus) {
 		this.x=x;
@@ -21,6 +22,8 @@ public class Maila {
 		vauhti = 5;
 		ylos = false;
 		alas = false;
+		// 4testing
+		nimi = "Makkonen";
 	}
 
 	public void liiku(GameOn g) {
@@ -43,8 +46,17 @@ public class Maila {
 	public void lisaaPiste() {
 		this.pisteet++;
 	}
+	
 	public int getPisteet() {
 		return this.pisteet;
+	}
+	
+	public void setNimi(String s) {
+		nimi = s;
+	}
+	
+	public String getNimi() {
+		return nimi;
 	}
 
 }
