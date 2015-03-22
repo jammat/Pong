@@ -15,6 +15,7 @@ public class PauseState extends GameState {
 	private Rectangle pauseContainer, jatka, menu, saveG, lopeta;
 	// 0 == default, 1 == jatka, 2 == menu, 3 == lopeta, 4 == saveG
 	private int hover;
+	private boolean tallennettu;
 	private int width, height, btnWidth, btnHeight;
 	private Font otsikko, nappain;
 	
@@ -34,12 +35,16 @@ public class PauseState extends GameState {
 	}
 
 	public void init() {
-		Panel.cursorState = Cursor.DEFAULT_CURSOR;
+		tallennettu = false;
 	}
 
 	public void update() {}
 
 	public void draw(Graphics2D g) {
+		// varitetaan musta tausta
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, Panel.WIDTH, Panel.HEIGHT);
+		
 		// harmaa tausta
 		g.setColor(Color.GRAY);
 		g.fillRect((Panel.WIDTH - width) / 2, (Panel.HEIGHT - height) / 2, width + 1, height + 1);
@@ -84,6 +89,14 @@ public class PauseState extends GameState {
 		g.drawString("Menu", (int)menu.getX() + 158, (int)menu.getY() + 50);
 		g.drawString("Tallenna peli", (int)saveG.getX() + 108, (int)saveG.getY() + 50);
 		g.drawString("Lopeta", (int)lopeta.getX() + 150, (int)lopeta.getY() + 50);
+		
+		/* piirretaan teksti, joka osoittaa
+		 * tallennuksen onnistuneeksi
+		 */
+		if (tallennettu) {
+			g.setColor(Color.WHITE);
+			g.drawString("Peli tallennettu", 525, 600);
+		}
 	}
 
 	public void keyPressed(int k) {}
@@ -149,6 +162,8 @@ public class PauseState extends GameState {
 					Pallo pallo = gameOn.getPallo();
 					savegame.put("palloX", Integer.toString(pallo.getX()));
 					savegame.put("palloY", Integer.toString(pallo.getY()));
+					
+					tallennettu = true;
 				}
 				savegame.store(fos, "pelin tila");
 				fos.close();
@@ -161,7 +176,7 @@ public class PauseState extends GameState {
 	public void mouseReleased(MouseEvent k) {}
 
 	public void mouseMoved(MouseEvent k) {
-		if (jatka.contains(Panel.mouseX, Panel.mouseY) || menu.contains(Panel.mouseX, Panel.mouseY) || lopeta.contains(Panel.mouseX, Panel.mouseY)) {
+		if (jatka.contains(Panel.mouseX, Panel.mouseY) || menu.contains(Panel.mouseX, Panel.mouseY) || lopeta.contains(Panel.mouseX, Panel.mouseY) || saveG.contains(Panel.mouseX, Panel.mouseY)) {
 			Panel.cursorState = Cursor.HAND_CURSOR;
 		} else {
 			Panel.cursorState = Cursor.DEFAULT_CURSOR;

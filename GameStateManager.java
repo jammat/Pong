@@ -1,3 +1,4 @@
+import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -33,11 +34,13 @@ public class GameStateManager {
 		states.add(new AsetuksetState(this));
 		states.add(new PauseState(this));
 		states.add(new HuipputuloksetState(this));
+		states.get(currentState).init();
 		states.get(currentState).update();
 	}
 	
 	public void setState(int state) {
 		LASTSTATE = currentState;
+		Panel.cursorState = Cursor.DEFAULT_CURSOR;
 		currentState = state;
 		states.get(state).init();
 	}
