@@ -162,8 +162,8 @@ public class GameOn extends GameState{
 		int stringLengthNimi1 = (int) g.getFontMetrics().getStringBounds(this.maila1.getNimi(), g).getWidth();
 		g.drawString(this.maila1.getNimi(), (Panel.WIDTH / 2) - 2*20 - stringLength - stringLengthNimi1, 20 + stringHeight);
 		g.drawString(Integer.toString(this.maila2.getPisteet()), (Panel.WIDTH / 2) + 20, 20 + stringHeight);
-		int stringLengthNimi2 = (int) g.getFontMetrics().getStringBounds(this.maila1.getNimi(), g).getWidth();
-		g.drawString(this.maila2.getNimi(), (Panel.WIDTH / 2) - 2*20 + stringLength + stringLengthNimi2, 20 + stringHeight);
+		int stringLengthNimi2 = (int) g.getFontMetrics().getStringBounds(this.maila2.getNimi(), g).getWidth();
+		g.drawString(this.maila2.getNimi(), (Panel.WIDTH / 2) + stringLength * 2 + 20, 20 + stringHeight);
 		maila1.render(g);
 		maila2.render(g);
 		pallo.render(g);
