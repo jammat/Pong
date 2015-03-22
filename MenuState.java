@@ -116,6 +116,8 @@ public class MenuState extends GameState {
 					savegame.load(new FileInputStream(savegTiedosto));
 					// pelityyppi
 					int peliTyyppi = Integer.parseInt(savegame.getProperty("pelitila"));
+					// vaikeusaste
+					int vaikeusaste = Integer.parseInt(savegame.getProperty("difficulty"));
 					// pelaaja1
 					int pelaaja1Pisteet = Integer.parseInt(savegame.getProperty("pelaaja1Pisteet"));
 					String pelaaja1Nimi = savegame.getProperty("pelaaja1Nimi");
@@ -145,7 +147,10 @@ public class MenuState extends GameState {
 					// pallo
 					peliTila.getPallo().setX(palloX);
 					peliTila.getPallo().setY(palloY);
-					// asetetaan tila
+					// asetetaan vaikeus
+					Panel.VAIKEUSASTE = vaikeusaste;
+					peliTila.asetaVaikeus();
+					// asetetaan tila, kutsumatta gameState-luokan init metodia
 					gsm.setState(peliTyyppi, 0);
 				} catch (IOException e) {
 					e.printStackTrace();

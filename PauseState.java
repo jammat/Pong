@@ -154,6 +154,8 @@ public class PauseState extends GameState {
 					} else {
 						savegame.put("pelitila", Integer.toString(GameStateManager.KAKSINPELI));
 					}
+					//vaikeusaste
+					savegame.put("difficulty", Integer.toString(Panel.VAIKEUSASTE));
 					// pelaaja1
 					Maila pelaaja1 = gameOn.getMaila1();
 					savegame.put("pelaaja1Pisteet", Integer.toString(pelaaja1.getPisteet()));
