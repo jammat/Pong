@@ -98,6 +98,17 @@ public class PauseState extends GameState {
 			g.drawString("Peli tallennettu", 525, 600);
 		}
 	}
+	
+	// Metodia ktusutaan, kun halutaan tallentaa tulos huipputuloksiin
+	public void tallennaHuipputuloksiin() {
+		if (GameStateManager.LASTSTATE == 2) {
+			Panel.hm.addScore(((GameOn)GameStateManager.states.get(2)).getMaila1().getNimi(), ((GameOn)GameStateManager.states.get(2)).getMaila1().getPisteet());
+		}
+		if (GameStateManager.LASTSTATE == 1) {
+			Panel.hm.addScore("Pelaajan 1 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila1().getPisteet());
+			Panel.hm.addScore("Pelaajan 2 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila2().getPisteet());
+		}
+	}
 
 	public void keyPressed(int k) {}
 
@@ -107,19 +118,16 @@ public class PauseState extends GameState {
 		if (jatka.contains(Panel.mouseX, Panel.mouseY)){
 			gsm.setState(GameStateManager.LASTSTATE);
 		}
-		if (menu.contains(Panel.mouseX, Panel.mouseY)){			
+		if (menu.contains(Panel.mouseX, Panel.mouseY)){
+			/* Kun poistutaan Menuun, niin pelin tila menetetaan (ellei 
+			 * tallennettu), joten tallennetaan huipputulokset tassakin.
+			 */
+			tallennaHuipputuloksiin();
 			gsm.setState(GameStateManager.MENU);
 		}
 		
-		// tassa kohtaa tallennetaan huipputulos
 		if (lopeta.contains(Panel.mouseX, Panel.mouseY)){
-			if (GameStateManager.LASTSTATE == 2) {
-				Panel.hm.addScore(((GameOn)GameStateManager.states.get(2)).getMaila1().getNimi(), ((GameOn)GameStateManager.states.get(2)).getMaila1().getPisteet());
-			}
-			if (GameStateManager.LASTSTATE == 1) {
-				Panel.hm.addScore("Pelaajan 1 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila1().getPisteet());
-				Panel.hm.addScore("Pelaajan 2 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila2().getPisteet());
-			}
+			tallennaHuipputuloksiin();
 			Panel.quit();
 		}	
 		

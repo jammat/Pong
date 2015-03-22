@@ -44,6 +44,7 @@ public class OhjeetState extends GameState {
 		g.drawString("Yksinpeliss\u00E4 vasemman puolen mailaa ohjataan W- ja S-n\u00E4pp\u00E4imill\u00E4.", (Panel.WIDTH - width + 80) / 2, stringHeight + 60 + (Panel.HEIGHT - height) / 2);
 		g.drawString("Moninpeliss\u00E4 vasenta mailaa ohjataan kuten yksinpeliss\u00E4, oikeaa mailaa nuolin\u00E4pp\u00E4imill\u00E4.", (Panel.WIDTH - width + 80) / 2, stringHeight + 80 +(Panel.HEIGHT - height) / 2);
 		g.drawString("Pelin saa tauotettua P-n\u00E4pp\u00E4imest\u00E4.", (Panel.WIDTH - width + 80) / 2, stringHeight + 100 + (Panel.HEIGHT - height) / 2);
+		g.drawString("Tulos tallentuu huipputuloksiin, kun poistut pelist\u00E4 Pause-menun kautta.", (Panel.WIDTH - width + 80) / 2, stringHeight + 120 + (Panel.HEIGHT - height) / 2);
 		g.setFont(nappain);
 		g.setColor(Color.BLACK);
 		g.drawString("Takaisin", (Panel.WIDTH - width) / 2 + 60, Panel.HEIGHT - ((Panel.HEIGHT - height) / 2) - 12);
