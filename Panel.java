@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 
 public class Panel extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener {
 	private static final long serialVersionUID = 1L;
-	public static HSManager hm;
 	
 	// kursorin paikka naytolla
 	public static int mouseX, mouseY;
@@ -47,6 +46,9 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 	
 	// Asetukset
 	public static int VAIKEUSASTE;
+	
+	// huipputuloksia varten
+	public static HSManager hm;
 
 	// Polku tiedostojuureen
 	public static final String BASEPATH = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
