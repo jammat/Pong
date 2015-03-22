@@ -40,7 +40,7 @@ public class GameOn extends GameState{
 	}
 	
 	public void init() {
-		Panel.cursorState = Cursor.DEFAULT_CURSOR;
+		resetoiPeli();
 		Panel.thread.suspend();
 		while (maila1.getNimi() == null){
 			String s = (String)JOptionPane.showInputDialog(
@@ -81,6 +81,23 @@ public class GameOn extends GameState{
 		Panel.thread.resume();
 		// kutsutaan vaikeusasteen asettavaa metodia
 		asetaVaikeus();
+	}
+	
+	/* jos edellinen tila ei ole ollut pause-menu
+	 * niin resetoi peli
+	 */
+	protected void resetoiPeli() {
+		if (GameStateManager.LASTSTATE != GameStateManager.PAUSE) {
+			maila1.setNimi(null);
+			maila1.setX(x);
+			maila1.setY(y);
+			maila1.setPisteet(0);
+			maila2.setNimi(null);
+			maila2.setX(Panel.WIDTH - x);
+			maila2.setY(y);
+			maila2.setPisteet(0);
+			pallo.resetPallo();
+		}
 	}
 	
 	protected void asetaVaikeus() {

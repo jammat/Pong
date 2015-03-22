@@ -19,7 +19,7 @@ public class GameAI extends GameOn{
 	 */
 	@Override
 	public void init() {
-		Panel.cursorState = Cursor.DEFAULT_CURSOR;
+		resetoiPeli();
 		Panel.thread.suspend();
 		while (maila1.getNimi() == null){
 			String s = (String)JOptionPane.showInputDialog(
