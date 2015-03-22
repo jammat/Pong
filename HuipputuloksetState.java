@@ -5,9 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
 
 public class HuipputuloksetState extends GameState {
 	private Rectangle huipputuloksetContainer, takaisin;
@@ -30,7 +28,7 @@ public class HuipputuloksetState extends GameState {
 		//tarkistetaan, etta onko yksinpelin huipputuloskia olemassa
 		File huippuYTiedosto = new File(HSManager.HUIPPUTULOKSET_YKSINPELI);
 		try {
-			if ( huippuYTiedosto.createNewFile() ) {
+			if ( huippuYTiedosto.createNewFile() || huippuYTiedosto.length() == 0) {
 				yksinP = false;
 			} else {
 				yksinP = true;
@@ -41,7 +39,7 @@ public class HuipputuloksetState extends GameState {
 		// sama moninpelille
 		File huippuMTiedosto = new File(HSManager.HUIPPUTULOKSET_KAKSINPELI );
 		try {
-			if ( huippuMTiedosto.createNewFile() ) {
+			if ( huippuMTiedosto.createNewFile() || huippuMTiedosto.length() == 0) {
 				kaksinP = false;
 			} else {
 				kaksinP = true;

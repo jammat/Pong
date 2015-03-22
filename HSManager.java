@@ -69,17 +69,17 @@ public class HSManager {
         }
     }
     
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public void loadScoreFileYksinpeli() {
     	try {
         	inputStream = new ObjectInputStream(new FileInputStream(HUIPPUTULOKSET_YKSINPELI));
-            scores = (ArrayList<Score>) inputStream.readObject();
+        	scores = (ArrayList<Score>) inputStream.readObject();
         } catch (FileNotFoundException e) {
             System.out.println("Tiedostoa ei lšydy: " + e.getMessage());
         } catch (IOException e) {
-            System.out.println("IO Error: " + e.getMessage());
+            System.out.println("IO Errori: " + e.getMessage());
         } catch (ClassNotFoundException e) {
-            System.out.println("Luokkaa ei lšydy: " + e.getMessage());
+            System.out.println("Luokkaa ei loydy: " + e.getMessage());
         } finally {
             try {
                 if (outputStream != null) {
