@@ -28,13 +28,15 @@ public class MenuState extends GameState {
 		fontSize = 30;
 		menuFont = new Font("Arial", Font.BOLD, fontSize);
 		tausta = new Rectangle(0,0,Panel.WIDTH, Panel.HEIGHT);
-		yksinP = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 40, buttonWidth, buttonHeight);
-		kaksinP = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 125, buttonWidth, buttonHeight);
-		loadN = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 210, buttonWidth, buttonHeight);
-		huippuT = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 295, buttonWidth, buttonHeight);
-		ohjeet = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 380, buttonWidth, buttonHeight);
-		asetukset = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 465, buttonWidth, buttonHeight);
-		lopeta = new Rectangle((Panel.WIDTH - buttonWidth) / 2, 550, buttonWidth, buttonHeight);
+		int startHeight = 45;
+		int margin = 10;
+		yksinP = new Rectangle((Panel.WIDTH - buttonWidth) / 2, startHeight, buttonWidth, buttonHeight);
+		kaksinP = new Rectangle((Panel.WIDTH - buttonWidth) / 2, startHeight + buttonHeight + margin, buttonWidth, buttonHeight);
+		loadN = new Rectangle((Panel.WIDTH - buttonWidth) / 2, startHeight + (buttonHeight + margin) * 2, buttonWidth, buttonHeight);
+		huippuT = new Rectangle((Panel.WIDTH - buttonWidth) / 2, startHeight + (buttonHeight + margin) * 3, buttonWidth, buttonHeight);
+		ohjeet = new Rectangle((Panel.WIDTH - buttonWidth) / 2, startHeight + (buttonHeight + margin) * 4, buttonWidth, buttonHeight);
+		asetukset = new Rectangle((Panel.WIDTH - buttonWidth) / 2, startHeight + (buttonHeight + margin) * 5, buttonWidth, buttonHeight);
+		lopeta = new Rectangle((Panel.WIDTH - buttonWidth) / 2, startHeight + (buttonHeight + margin) * 6, buttonWidth, buttonHeight);
 	}
 	
 	public void init() {
@@ -69,7 +71,7 @@ public class MenuState extends GameState {
 		g.draw(asetukset);
 		g.draw(lopeta);
 		g.setFont(menuFont);
-		int menuStartPos = 92;
+		int menuStartPos = 95;
 		for (int i = 0; i < menu.length; i++) {
 			int stringLength = (int) g.getFontMetrics().getStringBounds(menu[i], g).getWidth();
 			int stringHeight = (int) g.getFontMetrics().getStringBounds(menu[i], g).getHeight();
@@ -77,7 +79,7 @@ public class MenuState extends GameState {
 			if (menu[i].equals("Lataa peli") && !tallennettu) {
 				g.setColor(Color.GRAY);
 			}
-			g.drawString(menu[i], (Panel.WIDTH - stringLength) / 2, menuStartPos + (130 - (buttonHeight - stringHeight))* (i));
+			g.drawString(menu[i], (Panel.WIDTH - stringLength) / 2, menuStartPos + (136 - (buttonHeight - stringHeight))* (i));
 			if (menu[i].equals("Lataa peli") && !tallennettu) {
 				g.setColor(Color.WHITE);
 			}
