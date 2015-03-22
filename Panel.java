@@ -52,6 +52,8 @@ public class Panel extends JPanel implements Runnable, KeyListener, MouseListene
 	public static final String BASEPATH = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 	// Polku asetuksiin
 	public static final String SETTINGSPATH = BASEPATH + "//settings.cfg";
+	// Polku svaetiedostoon
+	public static final String SAVEPATH = BASEPATH + "//save.cfg";
 	
 	public Panel() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));

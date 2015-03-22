@@ -4,6 +4,11 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 public class PauseState extends GameState {
 	
@@ -99,14 +104,57 @@ public class PauseState extends GameState {
 				Panel.hm.addScore(((GameOn)GameStateManager.states.get(2)).getMaila1().getNimi(), ((GameOn)GameStateManager.states.get(2)).getMaila1().getPisteet());
 			}
 			if (GameStateManager.LASTSTATE == 1) {
-				Panel.hm.addScore("Pelaajan 1 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila1Pisteet());
-				Panel.hm.addScore("Pelaajan 2 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila2Pisteet());
+				Panel.hm.addScore("Pelaajan 1 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila1().getPisteet());
+				Panel.hm.addScore("Pelaajan 2 nimi", ((GameOn)GameStateManager.states.get(1)).getMaila2().getPisteet());
 			}
 			Panel.quit();
 		}	
 		
+		// tallennetaan pelin tila
 		if (saveG.contains(Panel.mouseX, Panel.mouseY)){
-			// tähän skripta, joka tallentaa huipputuloksen
+			File savegTiedosto = new File(Panel.SAVEPATH);
+			try {
+				savegTiedosto.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Properties savegame = new Properties();
+			GameState game = gsm.getState(GameStateManager.LASTSTATE);
+			try {
+				// valmistellaan tiedosto kirjoitettavaksi
+				savegame.load(new FileInputStream(savegTiedosto));
+				FileOutputStream fos = new FileOutputStream(savegTiedosto);
+				// tallennetaan tarvittavat muuttujat
+				if (game instanceof GameOn) {
+					GameOn gameOn = (GameOn) game;
+					// yksinpeli vai kaksinpeli
+					if (gameOn instanceof GameAI) {
+						savegame.put("pelitila", Integer.toString(GameStateManager.YKSINPELI));
+					} else {
+						savegame.put("pelitila", Integer.toString(GameStateManager.KAKSINPELI));
+					}
+					// pelaaja1
+					Maila pelaaja1 = gameOn.getMaila1();
+					savegame.put("pelaaja1Pisteet", Integer.toString(pelaaja1.getPisteet()));
+					savegame.put("pelaaja1Nimi", pelaaja1.getNimi());
+					savegame.put("pelaaja1X", Integer.toString(pelaaja1.getX()));
+					savegame.put("pelaaja1Y", Integer.toString(pelaaja1.getY()));
+					// pelaaja2
+					Maila pelaaja2 = gameOn.getMaila2();
+					savegame.put("pelaaja2Pisteet", Integer.toString(pelaaja2.getPisteet()));
+					savegame.put("pelaaja2Nimi", pelaaja2.getNimi());
+					savegame.put("pelaaja2X", Integer.toString(pelaaja2.getX()));
+					savegame.put("pelaaja2Y", Integer.toString(pelaaja2.getY()));
+					// pallo
+					Pallo pallo = gameOn.getPallo();
+					savegame.put("palloX", Integer.toString(pallo.getX()));
+					savegame.put("palloY", Integer.toString(pallo.getY()));
+				}
+				savegame.store(fos, "pelin tila");
+				fos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
 		}
 	}
 

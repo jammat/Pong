@@ -4,6 +4,10 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 /* Piirtaa menun, jonka kautta pelin eri tilojen
  * valilla voidaan liikkua.
@@ -82,7 +86,49 @@ public class MenuState extends GameState {
 			Panel.quit();
 		}
 		if (loadN.contains(Panel.mouseX, Panel.mouseY)) {
-			// tähän skripta, joka lataa pelin
+			File savegTiedosto = new File(Panel.SAVEPATH);
+			Properties savegame = new Properties();
+			try {
+				if ( !(savegTiedosto.createNewFile()) ) {
+					savegame.load(new FileInputStream(savegTiedosto));
+					// pelityyppi
+					int peliTyyppi = Integer.parseInt(savegame.getProperty("pelitila"));
+					// pelaaja1
+					int pelaaja1Pisteet = Integer.parseInt(savegame.getProperty("pelaaja1Pisteet"));
+					String pelaaja1Nimi = savegame.getProperty("pelaaja1Nimi");
+					int pelaaja1X = Integer.parseInt(savegame.getProperty("pelaaja1X"));
+					int pelaaja1Y = Integer.parseInt(savegame.getProperty("pelaaja1Y"));
+					// pelaaja2
+					int pelaaja2Pisteet = Integer.parseInt(savegame.getProperty("pelaaja2Pisteet"));
+					String pelaaja2Nimi = savegame.getProperty("pelaaja2Nimi");
+					int pelaaja2X = Integer.parseInt(savegame.getProperty("pelaaja2X"));
+					int pelaaja2Y = Integer.parseInt(savegame.getProperty("pelaaja2Y"));
+					// pallo
+					int palloX = Integer.parseInt(savegame.getProperty("palloX"));
+					int palloY = Integer.parseInt(savegame.getProperty("palloY"));
+					
+					// asetetaan pelitila tietoja vastaavaan tilaan
+					GameOn peliTila = (GameOn) gsm.getState(peliTyyppi);
+					// pelaaja1
+					peliTila.getMaila1().setPisteet(pelaaja1Pisteet);
+					peliTila.getMaila1().setNimi(pelaaja1Nimi);
+					peliTila.getMaila1().setX(pelaaja1X);
+					peliTila.getMaila1().setY(pelaaja1Y);
+					// pelaaja2
+					peliTila.getMaila2().setPisteet(pelaaja2Pisteet);
+					peliTila.getMaila2().setNimi(pelaaja2Nimi);
+					peliTila.getMaila2().setX(pelaaja2X);
+					peliTila.getMaila2().setY(pelaaja2Y);
+					// pallo
+					peliTila.getPallo().setX(palloX);
+					peliTila.getPallo().setY(palloY);
+					// asetetaan tila
+					gsm.setState(peliTyyppi);
+					
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

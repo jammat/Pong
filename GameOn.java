@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -41,16 +42,48 @@ public class GameOn extends GameState{
 	public void init() {
 		Panel.cursorState = Cursor.DEFAULT_CURSOR;
 		Panel.thread.suspend();
-		String s = (String)JOptionPane.showInputDialog(
-				new JFrame(),
-                "Kirjoita nimesi",
-                "Anna nimi",
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                null,
-                "ham");
-		maila1.setNimi(s);
+		while (maila1.getNimi() == null){
+			String s = (String)JOptionPane.showInputDialog(
+					new JFrame(),
+	                "Kirjoita nimesi",
+	                "Anna nimi",
+	                JOptionPane.PLAIN_MESSAGE,
+	                null,
+	                null,
+	                "Bala Mui");
+			// cancel-nappia on painettu silloin kun s on null
+			if (s == null) {
+			    // palataan MENU-tilaan
+				gsm.setState(GameStateManager.MENU);
+				Panel.thread.resume();
+			    return;
+			}
+			maila1.setNimi(s);
+		}
+		while (maila2.getNimi() == null){
+			String s = (String)JOptionPane.showInputDialog(
+					new JFrame(),
+	                "Kirjoita nimimerkki",
+	                "Pelaaja2 nimi",
+	                JOptionPane.PLAIN_MESSAGE,
+	                null,
+	                null,
+	                "Bala Mui");
+			// cancel-nappia on painettu silloin kun s on null
+			if (s == null) {
+			    // palataan MENU-tilaan
+				gsm.setState(GameStateManager.MENU);
+				Panel.thread.resume();
+			    return;
+			}
+			maila2.setNimi(s);
+		}
 		Panel.thread.resume();
+		// kutsutaan vaikeusasteen asettavaa metodia
+		asetaVaikeus();
+	}
+	
+	protected void asetaVaikeus() {
 		// asetetaan vaikeusaste tassa
 		if ( Panel.VAIKEUSASTE == 0 ) {
 			this.pallo.setVauhti(5);
@@ -109,9 +142,11 @@ public class GameOn extends GameState{
 		int stringLength = (int) g.getFontMetrics().getStringBounds(Integer.toString(this.maila1.getPisteet()), g).getWidth();
 		int stringHeight = (int) g.getFontMetrics().getStringBounds(Integer.toString(this.maila1.getPisteet()), g).getHeight();
 		g.drawString(Integer.toString(this.maila1.getPisteet()), (Panel.WIDTH / 2) - 20 - stringLength, 20 + stringHeight);
-		int stringLengthNimi = (int) g.getFontMetrics().getStringBounds(this.maila1.getNimi(), g).getWidth();
-		g.drawString(this.maila1.getNimi(), (Panel.WIDTH / 2) - 2*20 - stringLength - stringLengthNimi, 20 + stringHeight);
+		int stringLengthNimi1 = (int) g.getFontMetrics().getStringBounds(this.maila1.getNimi(), g).getWidth();
+		g.drawString(this.maila1.getNimi(), (Panel.WIDTH / 2) - 2*20 - stringLength - stringLengthNimi1, 20 + stringHeight);
 		g.drawString(Integer.toString(this.maila2.getPisteet()), (Panel.WIDTH / 2) + 20, 20 + stringHeight);
+		int stringLengthNimi2 = (int) g.getFontMetrics().getStringBounds(this.maila1.getNimi(), g).getWidth();
+		g.drawString(this.maila2.getNimi(), (Panel.WIDTH / 2) - 2*20 + stringLength + stringLengthNimi2, 20 + stringHeight);
 		maila1.render(g);
 		maila2.render(g);
 		pallo.render(g);
@@ -171,12 +206,12 @@ public class GameOn extends GameState{
 		return maila1;
 	}
 	
-	public int getMaila1Pisteet() {
-		return maila1.getPisteet();
+	public Maila getMaila2() {
+		return maila1;
 	}
 	
-	public int getMaila2Pisteet() {
-		return maila2.getPisteet();
+	public Pallo getPallo() {
+		return pallo;
 	}
 
 }

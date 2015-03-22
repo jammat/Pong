@@ -17,8 +17,8 @@ public class GameStateManager {
 	 * oikeaan pelitilaan viitataan
 	 */
 	public static final int MENU = 0;
-	public static final int YKSINPELI = 1;
-	public static final int KAKSINPELI = 2;
+	public static final int YKSINPELI = 2;
+	public static final int KAKSINPELI = 1;
 	public static final int OHJEET = 3;
 	public static final int ASETUKSET = 4;
 	public static final int PAUSE = 5;

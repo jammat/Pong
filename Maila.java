@@ -23,8 +23,7 @@ public class Maila {
 		vauhti = 5;
 		ylos = false;
 		alas = false;
-		// 4testing
-		nimi = "Makkonen";
+		nimi = null;
 	}
 
 	public void liiku(GameOn g) {
@@ -52,12 +51,32 @@ public class Maila {
 		return this.pisteet;
 	}
 	
+	public void setPisteet(int n) {
+		pisteet = n;
+	}
+	
 	public void setNimi(String s) {
 		nimi = s;
 	}
 	
 	public String getNimi() {
 		return nimi;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public void setX(int n) {
+		x = n;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
+	public void setY(int n) {
+		y = n;
 	}
 
 }
