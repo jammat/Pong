@@ -146,7 +146,7 @@ public class MenuState extends GameState {
 					peliTila.getPallo().setX(palloX);
 					peliTila.getPallo().setY(palloY);
 					// asetetaan tila
-					gsm.setState(peliTyyppi);
+					gsm.setState(peliTyyppi, 0);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

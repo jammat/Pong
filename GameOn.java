@@ -224,7 +224,7 @@ public class GameOn extends GameState{
 	}
 	
 	public Maila getMaila2() {
-		return maila1;
+		return maila2;
 	}
 	
 	public Pallo getPallo() {

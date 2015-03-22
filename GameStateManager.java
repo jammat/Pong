@@ -45,6 +45,15 @@ public class GameStateManager {
 		states.get(state).init();
 	}
 	
+	/* Ala pyorita init-metodia kayttamalla n == 0, jos tila 
+	 * initialisoitu muualla
+	 */
+	public void setState(int state, int n) {
+		LASTSTATE = currentState;
+		Panel.cursorState = Cursor.DEFAULT_CURSOR;
+		currentState = state;
+	}
+	
 	public int getCurrentState() {
 		return currentState;
 	}
